@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Bebas+Neue&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111;
+      --accent: #e8ff47;
+      --muted: #444;
+      --text: #f0f0f0;
+      --radius: 4px;
+      --nav-h: 56px;
+      --slide-duration: 420ms;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    /* ── NAV BAR ── */
+    nav {
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      border-bottom: 1px solid #1e1e1e;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 10;
+    }
+
+    .nav-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+    }
+
+    .nav-center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .btn {
+      background: none;
+      border: 1px solid var(--muted);
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      font-size: 16px;
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.2s, background 0.2s, color 0.2s;
+      flex-shrink: 0;
+    }
+    .btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(232,255,71,0.06);
+    }
+    .btn:active { opacity: 0.7; }
+
+    .counter {
+      font-size: 13px;
+      color: var(--muted);
+      min-width: 52px;
+      text-align: center;
+      letter-spacing: 0.05em;
+    }
+    .counter span { color: var(--text); }
+
+    .progress-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    /* ── SLIDE STAGE ── */
+    .stage {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      transition: transform var(--slide-duration) cubic-bezier(0.72, 0, 0.28, 1),
+                  opacity var(--slide-duration) ease;
+      will-change: transform, opacity;
+    }
+    .slide iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* States */
+    .slide.current  { transform: translateX(0);      opacity: 1; }
+    .slide.offRight { transform: translateX(100%);   opacity: 0.6; }
+    .slide.offLeft  { transform: translateX(-100%);  opacity: 0.6; }
+    .slide.entering-from-right { transform: translateX(100%); opacity: 0.6; }
+    .slide.entering-from-left  { transform: translateX(-100%); opacity: 0.6; }
+
+    /* ── DOT NAV ── */
+    .dots {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-wrap: wrap;
+      max-width: 340px;
+      justify-content: center;
+    }
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--muted);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      flex-shrink: 0;
+    }
+    .dot.active {
+      background: var(--accent);
+      transform: scale(1.5);
+    }
+    .dot:hover:not(.active) { background: #888; }
+
+    /* ── LOADING PLACEHOLDER ── */
+    .placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 13px;
+      background: var(--bg);
+    }
+    .placeholder .num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 72px;
+      color: #1a1a1a;
+      line-height: 1;
+    }
+
+    /* ── HINT ── */
+    .hint {
+      position: fixed;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 11px;
+      color: #333;
+      letter-spacing: 0.08em;
+      pointer-events: none;
+      animation: fadeHint 4s ease forwards;
+    }
+    @keyframes fadeHint {
+      0%   { opacity: 0; }
+      20%  { opacity: 1; }
+      80%  { opacity: 1; }
+      100% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-title">PORTFOLIO</div>
+
+  <div class="nav-center">
+    <button class="btn" id="prevBtn" aria-label="이전">&#8592;</button>
+    <div class="dots" id="dots"></div>
+    <button class="btn" id="nextBtn" aria-label="다음">&#8594;</button>
+  </div>
+
+  <div class="counter"><span id="currentNum">1</span> / <span id="totalNum">33</span></div>
+  <div class="progress-bar" id="progressBar"></div>
+</nav>
+
+<div class="stage" id="stage"></div>
+
+<div class="hint" id="hint">← → 키보드로도 넘길 수 있어요</div>
+
+<script>
+  // ─────────────────────────────────────────────
+  // ★ 여기에 실제 HTML 파일 이름을 순서대로 입력하세요
+  // ─────────────────────────────────────────────
+  const SLIDES = Array.from({ length: 33 }, (_, i) => `slide${String(i + 1).padStart(2, '0')}.html`);
+  // 예: ['cover.html', 'about.html', 'project1.html', ...] 로 직접 바꿔도 됩니다
+
+  const TOTAL = SLIDES.length;
+  let current = 0;
+  let animating = false;
+
+  const stage      = document.getElementById('stage');
+  const prevBtn    = document.getElementById('prevBtn');
+  const nextBtn    = document.getElementById('nextBtn');
+  const currentNum = document.getElementById('currentNum');
+  const totalNum   = document.getElementById('totalNum');
+  const progressBar= document.getElementById('progressBar');
+  const dotsEl     = document.getElementById('dots');
+
+  totalNum.textContent = TOTAL;
+
+  // ── Build dot nav ──
+  const dots = [];
+  SLIDES.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.title = `${i + 1}`;
+    d.addEventListener('click', () => goTo(i));
+    dotsEl.appendChild(d);
+    dots.push(d);
+  });
+
+  // ── Build slide elements (lazy iframe loading) ──
+  const slideEls = [];
+  SLIDES.forEach((src, i) => {
+    const div = document.createElement('div');
+    div.className = 'slide' + (i === 0 ? ' current' : ' offRight');
+
+    const placeholder = document.createElement('div');
+    placeholder.className = 'placeholder';
+    placeholder.innerHTML = `<div class="num">${String(i + 1).padStart(2, '0')}</div><span>Loading…</span>`;
+    div.appendChild(placeholder);
+
+    stage.appendChild(div);
+    slideEls.push({ el: div, src, loaded: false });
+  });
+
+  // ── Lazy load: load current + neighbors ──
+  function loadSlide(i) {
+    if (i < 0 || i >= TOTAL) return;
+    const s = slideEls[i];
+    if (s.loaded) return;
+    s.loaded = true;
+    const iframe = document.createElement('iframe');
+    iframe.src = s.src;
+    iframe.title = `Slide ${i + 1}`;
+    iframe.onload = () => {
+      s.el.querySelector('.placeholder')?.remove();
+    };
+    s.el.appendChild(iframe);
+  }
+
+  function loadNeighbors(i) {
+    loadSlide(i);
+    loadSlide(i - 1);
+    loadSlide(i + 1);
+  }
+
+  loadNeighbors(0);
+
+  // ── Update UI ──
+  function updateUI() {
+    currentNum.textContent = current + 1;
+    const pct = ((current) / (TOTAL - 1)) * 100;
+    progressBar.style.width = pct + '%';
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+  }
+
+  // ── Navigate ──
+  function goTo(next, direction) {
+    if (animating || next === current || next < 0 || next >= TOTAL) return;
+    animating = true;
+
+    const dir = direction ?? (next > current ? 'next' : 'prev');
+    const fromEl = slideEls[current].el;
+    const toEl   = slideEls[next].el;
+
+    loadNeighbors(next);
+
+    // Position incoming slide off screen
+    toEl.className = 'slide ' + (dir === 'next' ? 'entering-from-right' : 'entering-from-left');
+
+    // Force reflow
+    toEl.getBoundingClientRect();
+
+    // Animate
+    fromEl.className = 'slide ' + (dir === 'next' ? 'offLeft' : 'offRight');
+    toEl.className   = 'slide current';
+
+    current = next;
+    updateUI();
+
+    setTimeout(() => { animating = false; }, 430);
+  }
+
+  function goNext() { goTo(current + 1, 'next'); }
+  function goPrev() { goTo(current - 1, 'prev'); }
+
+  prevBtn.addEventListener('click', goPrev);
+  nextBtn.addEventListener('click', goNext);
+
+  // ── Keyboard ──
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goNext();
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   goPrev();
+  });
+
+  // ── Touch / swipe ──
+  let touchStartX = 0;
+  stage.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  stage.addEventListener('touchend', e => {
+    const dx = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(dx) > 50) dx > 0 ? goNext() : goPrev();
+  });
+
+  updateUI();
+</script>
+</body>
+</html>
