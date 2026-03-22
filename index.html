@@ -167,7 +167,14 @@
       transition: transform var(--dur) linear, opacity var(--dur) linear;
       will-change: transform, opacity;
     }
-    .slide iframe { width: 100%; height: 100%; border: none; display: block; }
+    .slide iframe {
+      width: 1280px;
+      height: 720px;
+      border: none;
+      display: block;
+      transform-origin: top left;
+      /* JS로 scale 값 동적 적용 */
+    }
     .slide.current              { transform: translateY(0);     opacity: 1; }
     .slide.offTop               { transform: translateY(-100%); opacity: 0; }
     .slide.offBottom            { transform: translateY(100%);  opacity: 0; }
@@ -409,7 +416,23 @@
     slideEls.push({ el: div, src, loaded: false });
   });
 
+  // ── iframe 스케일 (1280×720 → stage 꽉 채움) ────────
+  const SLIDE_W = 1280, SLIDE_H = 720;
+
+  function scaleIframe(iframe) {
+    const sw = stage.clientWidth, sh = stage.clientHeight;
+    const scale = Math.min(sw / SLIDE_W, sh / SLIDE_H);
+    const ox = (sw - SLIDE_W * scale) / 2;
+    const oy = (sh - SLIDE_H * scale) / 2;
+    iframe.style.transform = `translate(${ox}px, ${oy}px) scale(${scale})`;
+  }
+
+  window.addEventListener('resize', () => {
+    document.querySelectorAll('.slide iframe').forEach(scaleIframe);
+  });
+
   function attachIframeEvents(iframe) {
+    scaleIframe(iframe);
     try {
       iframe.contentWindow.addEventListener('keydown', e => {
         if (e.key==='ArrowDown'||e.key==='ArrowRight') { e.preventDefault(); goNext(); }
