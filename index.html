@@ -155,12 +155,12 @@
       outline: none;
     }
 
-    /* overlay는 wheel/touch 전용 — 클릭은 iframe으로 통과 */
+    /* overlay — wheel/touch 전용, 클릭은 JS에서 처리 */
     .slide-overlay {
       position: absolute;
       inset: 0;
       z-index: 5;
-      pointer-events: none;
+      pointer-events: all;
       cursor: default;
     }
 
@@ -508,8 +508,17 @@
     delta > 0 ? goNext() : goPrev();
   }
 
-  // overlay는 pointer-events:none 이므로 stage에만 등록
+  // overlay wheel 복구 + stage 둘 다 등록
+  overlay.addEventListener('wheel', handleWheel, { passive: false });
   stage.addEventListener('wheel', handleWheel, { passive: false });
+
+  // overlay 클릭 → 잠깐 pointer-events 끄고 아래 iframe 요소에 전달
+  overlay.addEventListener('click', e => {
+    overlay.style.pointerEvents = 'none';
+    const el = document.elementFromPoint(e.clientX, e.clientY);
+    if (el) el.click();
+    overlay.style.pointerEvents = 'all';
+  });
 
   let sx = 0, sy = 0;
   stage.addEventListener('touchstart', e => { sx=e.touches[0].clientX; sy=e.touches[0].clientY; }, { passive: true });
