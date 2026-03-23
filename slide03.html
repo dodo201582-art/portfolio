@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html data-theme="light" lang="ko" style=""><head>
+<meta charset="utf-8">
+<meta content="width=1280, height=720, initial-scale=1.0" name="viewport">
+<title>Career Timeline - Kim DoHun</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&amp;display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #0f172a;
+            overflow: hidden;
+            width: 1280px;
+            height: 720px;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background-color: #0f172a;
+            overflow: hidden;
+        }
+        /* Background Decorations */
+        .bg-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(30, 41, 59, 0.5) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(30, 41, 59, 0.5) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 0;
+            opacity: 0.3;
+        }
+        .timeline-line {
+            width: 2px;
+            background-color: #334155;
+            position: absolute;
+            top: 10px;
+            bottom: 10px;
+            left: 15px;
+        }
+        .timeline-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #3b82f6;
+            border: 2px solid #0f172a;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+            position: absolute;
+            left: 10px;
+            top: 25px;
+            z-index: 2;
+        }
+        .timeline-dot-past {
+            background-color: #64748b;
+            box-shadow: none;
+        }
+        .timeline-card {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 20px;
+            color: #e2e8f0;
+        }
+        .skills-card {
+            background-color: rgba(30, 41, 59, 0.5);
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid #334155;
+            color: #e2e8f0;
+            height: 560px;
+        }
+        .role-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .badge-current {
+            background-color: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+            border: 1px solid rgba(59, 130, 246, 0.4);
+        }
+        .badge-past {
+            background-color: rgba(148, 163, 184, 0.1);
+            color: #94a3b8;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+        }
+        .skill-tag {
+            background-color: #334155;
+            color: #e2e8f0;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            display: inline-block;
+            margin-right: 6px;
+            margin-bottom: 6px;
+        }
+        .skill-tag-aws { background-color: rgba(30, 58, 138, 0.5); color: rgb(191, 219, 254); border: 1px solid rgb(30, 64, 175); }
+        .skill-tag-naver { background-color: rgba(20, 83, 45, 0.5); color: rgb(187, 247, 208); border: 1px solid rgb(22, 101, 52); }
+        .skill-tag-kt { background-color: rgba(22, 78, 99, 0.5); color: rgb(165, 243, 252); border: 1px solid rgb(21, 94, 117); }
+        
+        .list-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: #cbd5e1;
+        }
+        .list-icon {
+            color: #3b82f6;
+            font-size: 0.75rem;
+            margin-top: 6px;
+            margin-right: 10px;
+            min-width: 12px;
+        }
+        .category-header {
+            display: flex;
+            align-items: center;
+            color: #60a5fa;
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+        .category-icon {
+            margin-right: 10px;
+            width: 16px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body style="">
+<div class="slide-container">
+<!-- Background Grid -->
+<div class="bg-grid" data-object="true" data-object-type="shape" style="position: absolute; left: 0; top: 0; width: 1280px; height: 720px; z-index: 0;"></div>
+<!-- Header -->
+<div data-object="true" data-object-type="textbox" style="position: absolute; left: 60px; top: 60px; width: 600px; height: 100px; z-index: 10;">
+<h1 style="margin: 0; font-size: 2.5rem; font-weight: 900; color: white; letter-spacing: -0.05em; margin-bottom: 10px;">Career History</h1>
+<p style="margin: 0; font-size: 1.1rem; color: #94a3b8; font-weight: 300; line-height: 1.4;">
+                안정적인 시스템 운영부터 대규모 클라우드 마이그레이션까지,<br>실무 경험과 성장 기록입니다.
+            </p>
+</div>
+<!-- Left Column: Timeline Container -->
+<!-- We use a shape for the vertical line -->
+<div data-object="true" data-object-type="shape" style="position: absolute; left: 90px; top: 200px; width: 2px; height: 480px; background-color: #334155; z-index: 1;"></div>
+<!-- Timeline Item 1: Didim365 -->
+<div data-object="true" data-object-type="shape" style="position: absolute; left: 85px; top: 200px; width: 12px; height: 12px; border-radius: 50%; background-color: #3b82f6; border: 2px solid #0f172a; box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2); z-index: 5;"></div>
+<!-- Didim365 Card Background -->
+<div class="timeline-card" data-object="true" data-object-type="shape" style="position: absolute; left: 120px; top: 190px; width: 620px; height: 340px; z-index: 2;"></div>
+<!-- Didim365 Content -->
+<div data-object="true" data-object-type="textbox" style="position: absolute; left: 144px; top: 214px; width: 572px; height: 300px; z-index: 10;">
+<div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+<div>
+<span class="role-badge badge-current">Current</span>
+<h2 style="margin: 4px 0 0 0; font-size: 1.25rem; font-weight: 700; color: white;">(주)디딤365</h2>
+</div>
+<p style="margin: 0; font-family: monospace; font-size: 0.9rem; font-weight: 700; color: #60a5fa;">2018.02 ~ 현재</p>
+</div>
+<p style="margin: 0 0 16px 0; font-size: 0.9rem; color: #94a3b8;">과장 (Part Leader)</p>
+<div class="list-item">
+<i class="fa-solid fa-check list-icon"></i>
+<p style="margin: 0;">파트장으로서 인력 관리 및 매니지드 서비스 운영 총괄 (MSP)</p>
+</div>
+<div class="list-item">
+<i class="fa-solid fa-check list-icon"></i>
+<p style="margin: 0;">AWS SMB Competency TFT 활동 및 취득으로 회사 매출 증가에 기여</p>
+</div>
+<div class="list-item">
+<i class="fa-solid fa-check list-icon"></i>
+<p style="margin: 0;">공공기관 및 민간 클라우드 마이그레이션/전환 설계 및 구축</p>
+</div>
+<div class="list-item">
+<i class="fa-solid fa-check list-icon"></i>
+<p style="margin: 0;">KTC, NCP, NHN, VMware, AWS 등 다양한 클라우드 인프라 아키텍처 수립</p>
+</div>
+<div class="list-item">
+<i class="fa-solid fa-check list-icon"></i>
+<p style="margin: 0;">SI 사업 참여: 교육과정평가원 AI 학력진단 시스템, 과기부 보안실증 사업 등</p>
+</div>
+</div>
+<!-- Timeline Item 2: Crezen Solution -->
+<div data-object="true" data-object-type="shape" style="position: absolute; left: 85px; top: 550px; width: 12px; height: 12px; border-radius: 50%; background-color: #64748b; border: 2px solid #0f172a; z-index: 5;"></div>
+<!-- Crezen Card Background -->
+<div class="timeline-card" data-object="true" data-object-type="shape" style="position: absolute; left: 120px; top: 550px; width: 620px; height: 140px; z-index: 2; opacity: 0.9;"></div>
+<!-- Crezen Content -->
+<div data-object="true" data-object-type="textbox" style="position: absolute; left: 144px; top: 570px; width: 572px; height: 110px; z-index: 10;">
+<div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+<div>
+<span class="role-badge badge-past">Intern</span>
+<h2 style="margin: 4px 0 0 0; font-size: 1.15rem; font-weight: 700; color: #e2e8f0;">(주)크리젠솔루션</h2>
+</div>
+<p style="margin: 0; font-family: monospace; font-size: 0.9rem; color: #64748b;">2017.02 ~ 2017.09</p>
+</div>
+<p style="margin: 0 0 12px 0; font-size: 0.9rem; color: #64748b;">인턴</p>
+<div class="list-item">
+<i class="fa-solid fa-check list-icon" style="color: #64748b;"></i>
+<p style="margin: 0; color: #94a3b8;">서버 및 네트워크 기초 엔지니어링 업무 수행 / IDC 센터 현장 지원 및 장비 관리</p>
+</div>
+</div>
+<!-- Right Column: Skills Section Background -->
+<div class="skills-card" data-object="true" data-object-type="shape" style="position: absolute; left: 780px; top: 110px; width: 440px; height: 560px; z-index: 2;"></div>
+<!-- Skills Content -->
+<div data-object="true" data-object-type="textbox" style="position: absolute; left: 805px; top: 135px; width: 390px; height: 510px; z-index: 10;">
+<div style="border-bottom: 1px solid #334155; padding-bottom: 15px; margin-bottom: 25px;">
+<h3 style="margin: 0 0 8px 0; font-size: 1.25rem; font-weight: 700; color: white;">Technical Skills</h3>
+<p style="margin: 0; font-size: 0.9rem; color: #94a3b8;">핵심 기술 스택</p>
+</div>
+<!-- Cloud Platforms -->
+<div style="margin-bottom: 20px;">
+<div class="category-header">
+<span class="category-icon"><i class="fa-solid fa-cloud"></i></span>
+<span>Cloud Platforms (CSP)</span>
+</div>
+<div>
+<span class="skill-tag skill-tag-aws">AWS</span>
+<span class="skill-tag skill-tag-naver">Naver Cloud</span>
+<span class="skill-tag skill-tag-kt">KT Cloud</span>
+<span class="skill-tag" style="background-color: #334155;">NHN Cloud</span>
+</div>
+</div>
+<!-- Infrastructure & OS -->
+<div style="margin-bottom: 20px;">
+<div class="category-header">
+<span class="category-icon"><i class="fa-solid fa-server"></i></span>
+<span>Infrastructure &amp; OS</span>
+</div>
+<div>
+<span class="skill-tag">Linux (CentOS 6/7)</span>
+<span class="skill-tag">Windows Server</span>
+<span class="skill-tag">DELL / HP / IBM Server</span>
+<span class="skill-tag">VMware</span>
+</div>
+</div>
+<!-- Network & Security -->
+<div style="margin-bottom: 20px;">
+<div class="category-header">
+<span class="category-icon"><i class="fa-solid fa-shield-halved"></i></span>
+<span>Network &amp; Security</span>
+</div>
+<div>
+<span class="skill-tag">IDC Network Design</span>
+<span class="skill-tag">UTM / VPN</span>
+<span class="skill-tag">IPTABLES</span>
+<span class="skill-tag">Firewall Policy</span>
+</div>
+</div>
+<!-- Architecture & Middleware -->
+<div>
+<div class="category-header">
+<span class="category-icon"><i class="fa-solid fa-layer-group"></i></span>
+<span>Architecture &amp; Middleware</span>
+</div>
+<div>
+<span class="skill-tag">MSA</span>
+<span class="skill-tag">WEB / WAS</span>
+<span class="skill-tag">Oracle DB</span>
+<span class="skill-tag">Kubernetes (CKA/CKAD)</span>
+</div>
+</div>
+</div>
+</div>
+
+</body></html>
