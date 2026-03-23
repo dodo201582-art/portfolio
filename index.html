@@ -154,11 +154,13 @@
       overflow: hidden; min-height: 0;
       outline: none;
     }
+
+    /* overlay는 wheel/touch 전용 — 클릭은 iframe으로 통과 */
     .slide-overlay {
       position: absolute;
       inset: 0;
       z-index: 5;
-      pointer-events: all;   /* iframe 위에서 모든 이벤트 가로채기 */
+      pointer-events: none;
       cursor: default;
     }
 
@@ -238,7 +240,6 @@
       white-space: nowrap;
     }
 
-    /* 화살표 아이콘 — 바운스 */
     .hint-arrow {
       display: flex;
       flex-direction: column;
@@ -502,14 +503,12 @@
     const now = Date.now();
     const delta = Math.abs(e.deltaY) >= Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
     if (Math.abs(delta) < 1) return;
-    // 연속 스크롤: 쿨다운 없이 방향이 바뀔 때만 즉시, 같은 방향은 50ms 쿨다운
     if (now - lastScroll < 50) return;
     lastScroll = now;
     delta > 0 ? goNext() : goPrev();
   }
 
-  // overlay에 등록 — iframe 위에 깔려 있어서 항상 발동
-  overlay.addEventListener('wheel', handleWheel, { passive: false });
+  // overlay는 pointer-events:none 이므로 stage에만 등록
   stage.addEventListener('wheel', handleWheel, { passive: false });
 
   let sx = 0, sy = 0;
