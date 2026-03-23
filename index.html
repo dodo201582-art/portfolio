@@ -519,6 +519,13 @@
     if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 44) { dy > 0 ? goNext() : goPrev(); }
   });
 
+  // iframe 내부에서 postMessage로 슬라이드 이동 요청 수신
+  window.addEventListener('message', e => {
+    if (e.data?.type === 'goToSlide') {
+      goTo(e.data.index);
+    }
+  });
+
   loadNeighbors(0);
   updateUI();
 </script>
