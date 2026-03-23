@@ -18,6 +18,15 @@
         height: 720px;
     }
 
+    /*
+     * 레이아웃 높이 계산
+     * Container 720px – pad(32+28) = 660px content
+     * Header: h1(32)+mb(5)+p(18)+mb(14) ≈ 69px
+     * Main: 660 – 69 = 591px
+     * Skills inner: 591 – pad(16+16) = 559px
+     * skills-header: ≈50px → 6섹션에 509px (1섹션 ≈ 84px)
+     * 섹션: cat-hdr(17)+mb(5)+tags-2rows(35)+mb(8) = 65px ✓ 여유있음
+     */
     .slide-container {
         width: 1280px;
         height: 720px;
@@ -26,32 +35,31 @@
         overflow: hidden;
         display: flex;
         flex-direction: column;
-        padding: 48px 60px 40px;
+        padding: 32px 52px 28px;
     }
 
-    /* Background Grid */
     .bg-grid {
         position: absolute;
         inset: 0;
         background-image:
-            linear-gradient(rgba(30, 41, 59, 0.5) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(30, 41, 59, 0.5) 1px, transparent 1px);
+            linear-gradient(rgba(30,41,59,0.5) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(30,41,59,0.5) 1px, transparent 1px);
         background-size: 40px 40px;
         opacity: 0.3;
         pointer-events: none;
         z-index: 0;
     }
 
-    /* ── Header ── */
+    /* ── Header (≈69px) ── */
     .header {
         position: relative;
         z-index: 10;
-        margin-bottom: 28px;
+        margin-bottom: 14px;
         flex-shrink: 0;
     }
     .header h1 {
-        margin: 0 0 8px;
-        font-size: 2.4rem;
+        margin: 0 0 5px;
+        font-size: 2rem;
         font-weight: 900;
         color: #ffffff;
         letter-spacing: -0.04em;
@@ -59,16 +67,16 @@
     }
     .header p {
         margin: 0;
-        font-size: 1rem;
+        font-size: 0.88rem;
         color: #94a3b8;
         font-weight: 300;
-        line-height: 1.5;
+        line-height: 1.4;
     }
 
-    /* ── Main Layout ── */
+    /* ── Main (591px) ── */
     .main {
         display: flex;
-        gap: 28px;
+        gap: 22px;
         flex: 1;
         min-height: 0;
         position: relative;
@@ -80,11 +88,11 @@
         flex: 1;
         display: flex;
         flex-direction: column;
-        gap: 16px;
+        gap: 12px;
         position: relative;
+        overflow: hidden;
     }
 
-    /* vertical line */
     .timeline-col::before {
         content: '';
         position: absolute;
@@ -98,38 +106,36 @@
 
     .timeline-item {
         display: flex;
-        gap: 20px;
+        gap: 18px;
         position: relative;
         flex-shrink: 0;
     }
 
-    /* dot */
     .timeline-dot {
         flex-shrink: 0;
         width: 14px;
         height: 14px;
         border-radius: 50%;
-        margin-top: 22px;
+        margin-top: 18px;
         position: relative;
         z-index: 2;
     }
     .dot-current {
         background-color: #3b82f6;
         border: 2px solid #0f172a;
-        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.25);
+        box-shadow: 0 0 0 4px rgba(59,130,246,0.25);
     }
     .dot-past {
         background-color: #64748b;
         border: 2px solid #0f172a;
     }
 
-    /* card */
     .timeline-card {
         flex: 1;
         background-color: #1e293b;
         border: 1px solid #334155;
         border-radius: 12px;
-        padding: 18px 22px;
+        padding: 14px 18px;
         color: #e2e8f0;
     }
     .card-past { opacity: 0.9; }
@@ -138,11 +144,11 @@
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
-        margin-bottom: 4px;
+        margin-bottom: 2px;
     }
     .card-top-left h2 {
-        margin: 4px 0 0;
-        font-size: 1.15rem;
+        margin: 3px 0 0;
+        font-size: 1.05rem;
         font-weight: 700;
         color: #ffffff;
         line-height: 1.2;
@@ -151,7 +157,7 @@
 
     .date-label {
         font-family: monospace;
-        font-size: 0.88rem;
+        font-size: 0.82rem;
         font-weight: 700;
         color: #60a5fa;
         white-space: nowrap;
@@ -161,27 +167,27 @@
 
     .role-badge {
         display: inline-block;
-        padding: 3px 10px;
+        padding: 2px 8px;
         border-radius: 20px;
-        font-size: 0.7rem;
+        font-size: 0.65rem;
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.05em;
     }
     .badge-current {
-        background-color: rgba(59, 130, 246, 0.2);
+        background-color: rgba(59,130,246,0.2);
         color: #60a5fa;
-        border: 1px solid rgba(59, 130, 246, 0.4);
+        border: 1px solid rgba(59,130,246,0.4);
     }
     .badge-past {
-        background-color: rgba(148, 163, 184, 0.1);
+        background-color: rgba(148,163,184,0.1);
         color: #94a3b8;
-        border: 1px solid rgba(148, 163, 184, 0.2);
+        border: 1px solid rgba(148,163,184,0.2);
     }
 
     .role-text {
-        margin: 4px 0 14px;
-        font-size: 0.85rem;
+        margin: 3px 0 10px;
+        font-size: 0.8rem;
         color: #94a3b8;
     }
     .card-past .role-text { color: #64748b; }
@@ -189,55 +195,57 @@
     .list-item {
         display: flex;
         align-items: flex-start;
-        margin-bottom: 7px;
-        font-size: 0.83rem;
-        line-height: 1.55;
+        margin-bottom: 6px;
+        font-size: 0.8rem;
+        line-height: 1.5;
         color: #cbd5e1;
     }
     .list-item:last-child { margin-bottom: 0; }
     .list-icon {
         width: 12px;
         height: 12px;
-        margin-top: 4px;
-        margin-right: 9px;
+        margin-top: 3px;
+        margin-right: 8px;
         flex-shrink: 0;
     }
-    .card-past .list-icon { color: #64748b; }
     .card-past .list-item { color: #94a3b8; }
 
-    /* ── Right: Skills ── */
+    /* ── Right: Skills (400px wide, height=591px via flex stretch) ── */
     .skills-col {
-        width: 420px;
+        width: 400px;
+        height: 490px;
         flex-shrink: 0;
-        background-color: rgba(30, 41, 59, 0.5);
+        background-color: rgba(30,41,59,0.5);
         border: 1px solid #334155;
-        border-radius: 20px;
-        padding: 26px 28px;
+        border-radius: 18px;
+        padding: 16px 20px;
         display: flex;
         flex-direction: column;
-        gap: 0;
+        overflow: hidden;
     }
 
+    /* skills-header: ≈50px */
     .skills-header {
         border-bottom: 1px solid #334155;
-        padding-bottom: 14px;
-        margin-bottom: 20px;
+        padding-bottom: 8px;
+        margin-bottom: 12px;
         flex-shrink: 0;
     }
     .skills-header h3 {
-        margin: 0 0 6px;
-        font-size: 1.2rem;
+        margin: 0 0 3px;
+        font-size: 1rem;
         font-weight: 700;
         color: #ffffff;
     }
     .skills-header p {
         margin: 0;
-        font-size: 0.85rem;
+        font-size: 0.75rem;
         color: #94a3b8;
     }
 
+    /* skill-section: cat-hdr(17)+mb(5)+tags(≤35)+mb(8) ≈ 65px */
     .skill-section {
-        margin-bottom: 18px;
+        margin-bottom: 8px;
         flex-shrink: 0;
     }
     .skill-section:last-child { margin-bottom: 0; }
@@ -247,44 +255,40 @@
         align-items: center;
         color: #60a5fa;
         font-weight: 700;
-        font-size: 0.88rem;
-        margin-bottom: 9px;
-        gap: 9px;
+        font-size: 0.76rem;
+        margin-bottom: 5px;
+        gap: 7px;
     }
 
-    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 4px; }
 
+    /* tag height: 3+3 pad + font(0.71rem≈11.4px)×1.4lh ≈ 22px */
     .skill-tag {
         background-color: #334155;
         color: #e2e8f0;
-        padding: 5px 10px;
-        border-radius: 6px;
-        font-size: 0.78rem;
+        padding: 3px 8px;
+        border-radius: 5px;
+        font-size: 0.71rem;
         font-weight: 500;
         white-space: nowrap;
+        line-height: 1.4;
     }
-    .tag-aws  { background-color: rgba(30,58,138,0.5);  color: #bfdbfe; border: 1px solid rgb(30,64,175); }
-    .tag-ncp  { background-color: rgba(20,83,45,0.5);   color: #bbf7d0; border: 1px solid rgb(22,101,52); }
-    .tag-kt   { background-color: rgba(22,78,99,0.5);   color: #a5f3fc; border: 1px solid rgb(21,94,117); }
 </style>
 </head>
 <body>
 <div class="slide-container">
     <div class="bg-grid"></div>
 
-    <!-- Header -->
     <div class="header">
         <h1>Career History</h1>
-        <p>안정적인 시스템 운영부터 대규모 클라우드 마이그레이션까지,<br>실무 경험과 성장 기록입니다.</p>
+        <p>안정적인 시스템 운영부터 대규모 클라우드 마이그레이션까지, 실무 경험과 성장 기록입니다.</p>
     </div>
 
-    <!-- Main Content -->
     <div class="main">
 
         <!-- Left: Timeline -->
         <div class="timeline-col">
 
-            <!-- Item 1: Didim365 -->
             <div class="timeline-item">
                 <div class="timeline-dot dot-current"></div>
                 <div class="timeline-card">
@@ -297,29 +301,28 @@
                     </div>
                     <p class="role-text">과장 (Part Leader)</p>
                     <div class="list-item">
-                        <svg class="list-icon" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 6l3 3 5-5" stroke="#3b82f6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <svg class="list-icon" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#3b82f6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         <span>파트장으로서 인력 관리 및 매니지드 서비스 운영 총괄 (MSP)</span>
                     </div>
                     <div class="list-item">
-                        <svg class="list-icon" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 6l3 3 5-5" stroke="#3b82f6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <svg class="list-icon" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#3b82f6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         <span>AWS SMB Competency TFT 활동 및 취득으로 회사 매출 증가에 기여</span>
                     </div>
                     <div class="list-item">
-                        <svg class="list-icon" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 6l3 3 5-5" stroke="#3b82f6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <svg class="list-icon" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#3b82f6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         <span>공공기관 및 민간 클라우드 마이그레이션/전환 설계 및 구축</span>
                     </div>
                     <div class="list-item">
-                        <svg class="list-icon" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 6l3 3 5-5" stroke="#3b82f6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <svg class="list-icon" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#3b82f6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         <span>KTC, NCP, NHN, VMware, AWS 등 다양한 클라우드 인프라 아키텍처 수립</span>
                     </div>
                     <div class="list-item">
-                        <svg class="list-icon" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 6l3 3 5-5" stroke="#3b82f6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <svg class="list-icon" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#3b82f6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         <span>SI 사업 참여: 교육과정평가원 AI 학력진단 시스템, 과기부 보안실증 사업 등</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Item 2: Crezen -->
             <div class="timeline-item">
                 <div class="timeline-dot dot-past"></div>
                 <div class="timeline-card card-past">
@@ -332,7 +335,7 @@
                     </div>
                     <p class="role-text">인턴</p>
                     <div class="list-item">
-                        <svg class="list-icon" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 6l3 3 5-5" stroke="#64748b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <svg class="list-icon" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#64748b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         <span>서버 및 네트워크 기초 엔지니어링 업무 수행 / IDC 센터 현장 지원 및 장비 관리</span>
                     </div>
                 </div>
@@ -349,33 +352,67 @@
 
             <div class="skill-section">
                 <div class="category-header">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 11a3 3 0 1 1 .5-5.95A4 4 0 1 1 12 8h.5a2.5 2.5 0 1 1 0 5H4a3 3 0 0 1 0-6z" stroke="#60a5fa" stroke-width="1.2" fill="none"/></svg>
-                    <span>Cloud Platforms (CSP)</span>
+                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M4 11a3 3 0 1 1 .5-5.95A4 4 0 1 1 12 8h.5a2.5 2.5 0 1 1 0 5H4a3 3 0 0 1 0-6z" stroke="#60a5fa" stroke-width="1.3" fill="none"/></svg>
+                    <span>Cloud Platforms</span>
                 </div>
                 <div class="tags">
-                    <span class="skill-tag tag-aws">AWS</span>
-                    <span class="skill-tag tag-ncp">Naver Cloud</span>
-                    <span class="skill-tag tag-kt">KT Cloud</span>
+                    <span class="skill-tag">AWS</span>
+                    <span class="skill-tag">Naver Cloud</span>
+                    <span class="skill-tag">KT Cloud</span>
                     <span class="skill-tag">NHN Cloud</span>
+                    <span class="skill-tag">VMware</span>
+                    <span class="skill-tag">IaaS</span>
+                    <span class="skill-tag">PaaS</span>
+                    <span class="skill-tag">SaaS</span>
                 </div>
             </div>
 
             <div class="skill-section">
                 <div class="category-header">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="4" rx="1" stroke="#60a5fa" stroke-width="1.2"/><rect x="2" y="9" width="12" height="4" rx="1" stroke="#60a5fa" stroke-width="1.2"/><circle cx="12" cy="5" r="1" fill="#60a5fa"/><circle cx="12" cy="11" r="1" fill="#60a5fa"/></svg>
+                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="4" rx="1" stroke="#60a5fa" stroke-width="1.3"/><rect x="2" y="9" width="12" height="4" rx="1" stroke="#60a5fa" stroke-width="1.3"/><circle cx="12" cy="5" r="1" fill="#60a5fa"/><circle cx="12" cy="11" r="1" fill="#60a5fa"/></svg>
                     <span>Infrastructure &amp; OS</span>
                 </div>
                 <div class="tags">
-                    <span class="skill-tag">Linux (CentOS 6/7)</span>
+                    <span class="skill-tag">Linux</span>
+                    <span class="skill-tag">Ubuntu</span>
+                    <span class="skill-tag">CentOS</span>
+                    <span class="skill-tag">Unix</span>
                     <span class="skill-tag">Windows Server</span>
-                    <span class="skill-tag">DELL / HP / IBM Server</span>
-                    <span class="skill-tag">VMware</span>
+                    <span class="skill-tag">DELL / HP / IBM</span>
                 </div>
             </div>
 
             <div class="skill-section">
                 <div class="category-header">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2L3 4v4c0 3 2.5 5.5 5 6 2.5-.5 5-3 5-6V4L8 2z" stroke="#60a5fa" stroke-width="1.2"/><path d="M8 2v10c2.5-.5 5-3 5-6V4L8 2z" fill="#60a5fa" fill-opacity="0.15"/></svg>
+                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M2 5l6-3 6 3-6 3-6-3z" stroke="#60a5fa" stroke-width="1.3" stroke-linejoin="round"/><path d="M2 9l6 3 6-3" stroke="#60a5fa" stroke-width="1.3" stroke-linejoin="round"/><path d="M2 7l6 3 6-3" stroke="#60a5fa" stroke-width="1.3" stroke-linejoin="round" stroke-opacity="0.5"/></svg>
+                    <span>Container &amp; DevOps</span>
+                </div>
+                <div class="tags">
+                    <span class="skill-tag">Kubernetes (CKA/CKAD)</span>
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">Harbor</span>
+                    <span class="skill-tag">ArgoCD</span>
+                </div>
+            </div>
+
+            <div class="skill-section">
+                <div class="category-header">
+                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><ellipse cx="8" cy="4.5" rx="5" ry="2" stroke="#60a5fa" stroke-width="1.3"/><path d="M3 4.5v3c0 1.1 2.24 2 5 2s5-.9 5-2v-3" stroke="#60a5fa" stroke-width="1.3"/><path d="M3 7.5v3c0 1.1 2.24 2 5 2s5-.9 5-2v-3" stroke="#60a5fa" stroke-width="1.3"/></svg>
+                    <span>Database</span>
+                </div>
+                <div class="tags">
+                    <span class="skill-tag">Oracle DB</span>
+                    <span class="skill-tag">MariaDB</span>
+                    <span class="skill-tag">MySQL</span>
+                    <span class="skill-tag">PostgreSQL</span>
+                    <span class="skill-tag">DBMS</span>
+                </div>
+            </div>
+
+            <div class="skill-section">
+                <div class="category-header">
+                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M8 2L3 4v4c0 3 2.5 5.5 5 6 2.5-.5 5-3 5-6V4L8 2z" stroke="#60a5fa" stroke-width="1.3"/><path d="M8 2v10c2.5-.5 5-3 5-6V4L8 2z" fill="#60a5fa" fill-opacity="0.15"/></svg>
                     <span>Network &amp; Security</span>
                 </div>
                 <div class="tags">
@@ -388,14 +425,16 @@
 
             <div class="skill-section">
                 <div class="category-header">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 5l6-3 6 3-6 3-6-3z" stroke="#60a5fa" stroke-width="1.2" stroke-linejoin="round"/><path d="M2 9l6 3 6-3" stroke="#60a5fa" stroke-width="1.2" stroke-linejoin="round"/><path d="M2 7l6 3 6-3" stroke="#60a5fa" stroke-width="1.2" stroke-linejoin="round" stroke-opacity="0.5"/></svg>
+                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="5" height="5" rx="1" stroke="#60a5fa" stroke-width="1.3"/><rect x="9" y="2" width="5" height="5" rx="1" stroke="#60a5fa" stroke-width="1.3"/><rect x="2" y="9" width="5" height="5" rx="1" stroke="#60a5fa" stroke-width="1.3"/><path d="M11.5 9v6M9 11.5h5" stroke="#60a5fa" stroke-width="1.3" stroke-linecap="round"/></svg>
                     <span>Architecture &amp; Middleware</span>
                 </div>
                 <div class="tags">
                     <span class="skill-tag">MSA</span>
+                    <span class="skill-tag">NGINX</span>
                     <span class="skill-tag">WEB / WAS</span>
-                    <span class="skill-tag">Oracle DB</span>
-                    <span class="skill-tag">Kubernetes (CKA/CKAD)</span>
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">API</span>
+                    <span class="skill-tag">OSS</span>
                 </div>
             </div>
 
