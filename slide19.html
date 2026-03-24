@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Project Details Narrative - NIA Cloud Migration</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&amp;display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            display: flex;
+            background-color: #0f172a;
+            position: relative;
+        }
+        
+        /* Left Sidebar */
+        .sidebar {
+            width: 380px;
+            background-color: #1e293b;
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #334155;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .project-meta {
+            margin-bottom: 40px;
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 4px 10px;
+            background-color: rgba(59, 130, 246, 0.15);
+            color: #60a5fa;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+        
+        .title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+            color: #94a3b8;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        .highlight-bar {
+            width: 60px;
+            height: 4px;
+            background-color: #3b82f6; /* Gradient removed for compatibility */
+            margin: 25px 0;
+            border-radius: 2px;
+        }
+
+        .key-points {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .key-point-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .icon-circle {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: #334155;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+        
+        .key-point-item:hover .icon-circle {
+            background-color: #3b82f6;
+            color: #fff;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+        }
+        
+        .kp-text {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #cbd5e1;
+        }
+
+        /* Right Content */
+        .content-area {
+            flex: 1;
+            padding: 50px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            /* Gradient removed for compatibility */
+            background-color: #0f172a;
+        }
+
+        .narrative-block {
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 24px;
+            border-left: 2px solid #334155;
+            transition: border-color 0.3s;
+        }
+
+        .narrative-block:hover {
+            border-left-color: #3b82f6;
+        }
+
+        .block-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #e2e8f0;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .block-title i {
+            color: #60a5fa;
+            font-size: 0.9rem;
+        }
+
+        .block-text {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #cbd5e1;
+            text-align: justify;
+        }
+
+        .strong-text {
+            color: #fff;
+            font-weight: 600;
+            background-color: rgba(59, 130, 246, 0.3); /* Gradient removed */
+        }
+
+        .quote-icon {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            font-size: 8rem;
+            color: rgba(255, 255, 255, 0.03);
+            font-family: serif;
+            z-index: 0;
+        }
+
+    </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}</style><style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}</style></head>
+<body style="">
+<div class="slide-container">
+<!-- Sidebar -->
+<div class="sidebar">
+<div class="project-meta">
+<span class="tag">PROJECT DETAILS</span>
+<h1 class="title">프로젝트<br>상세 내용</h1>
+<p class="subtitle">NIA 민간 클라우드 2차 전환 사업<br>(NHN Cloud Migration)</p>
+<div class="highlight-bar"></div>
+</div>
+<div class="key-points">
+<div class="key-point-item">
+<div class="icon-circle">
+<i class="fa-solid fa-magnifying-glass"></i>
+</div>
+<p class="kp-text">Analysis &amp; Audit</p>
+</div>
+<div class="key-point-item">
+<div class="icon-circle">
+<i class="fa-solid fa-server"></i>
+</div>
+<p class="kp-text">HA Architecture</p>
+</div>
+<div class="key-point-item">
+<div class="icon-circle">
+<i class="fa-solid fa-stopwatch"></i>
+</div>
+<p class="kp-text">Zero Downtime</p>
+</div>
+<div class="key-point-item">
+<div class="icon-circle">
+<i class="fa-solid fa-database"></i>
+</div>
+<p class="kp-text">Backup Strategy</p>
+</div>
+</div>
+</div>
+<!-- Content Area -->
+<div class="content-area">
+<i class="fa-solid fa-quote-right quote-icon"></i>
+<!-- Block 1: Environment Analysis -->
+<div class="narrative-block">
+<h3 class="block-title">
+<i class="fa-solid fa-list-check"></i> 기존 환경 분석 및 리스크 식별
+                </h3>
+<p class="block-text">
+                    마이그레이션 프로젝트에서 가장 먼저 집중한 것은 기존 환경에 대한 정확하고 빠른 파악이었습니다. 
+                    전환 전 환경을 충분히 이해하지 못하면 이관 과정에서 예상치 못한 장애로 이어질 수 있기에, 
+                    <span class="strong-text">기존 인프라 구성과 서비스 운영 현황을 전수 분석</span>하는 것부터 시작하여 잠재적 리스크를 사전에 제거했습니다.
+                </p>
+</div>
+<!-- Block 2: HA Architecture Redesign -->
+<div class="narrative-block">
+<h3 class="block-title">
+<i class="fa-solid fa-network-wired"></i> 고가용성(HA) 아키텍처 재설계
+                </h3>
+<p class="block-text">
+                    기존 환경은 이중화가 되어 있지 않은 단일 구성이었습니다. 단순히 클라우드로 옮기는 것에 그치지 않고, 
+                    전환과 동시에 <span class="strong-text">고가용성 아키텍처로 전면 재설계</span>했습니다. 
+                    이중화 구성을 기반으로 <span class="strong-text">Tomcat 세션 클러스터링</span>을 적용하여, 
+                    서버 간 세션이 끊기지 않고 연속적인 서비스가 가능하도록 구현했습니다.
+                </p>
+</div>
+<!-- Block 3: Minimized User Impact -->
+<div class="narrative-block">
+<h3 class="block-title">
+<i class="fa-solid fa-moon"></i> 사용자 영향 최소화 전환 전략
+                </h3>
+<p class="block-text">
+                    실제 전환 작업은 서비스 이용량이 가장 적은 <span class="strong-text">야간 시간대를 선택</span>해 진행함으로써 
+                    사용자 영향을 최소화했습니다. 철저한 사전 계획과 시나리오를 바탕으로 작업을 수행하여, 
+                    서비스 중단 없이 안정적으로 클라우드 환경으로의 이관을 완료했습니다.
+                </p>
+</div>
+<!-- Block 4: Backup System -->
+<div class="narrative-block">
+<h3 class="block-title">
+<i class="fa-solid fa-shield-halved"></i> Acronis 기반 백업 체계 구축
+                </h3>
+<p class="block-text">
+                    백업 체계는 <span class="strong-text">Acronis</span>를 활용했습니다. 
+                    당시 사내에서 Acronis 백업을 총괄하는 담당자로서의 경험을 살려, 
+                    클라우드 전환 환경에 최적화된 백업 정책을 신속하게 설계하고 구성할 수 있었습니다. 
+                    이를 통해 데이터 유실 없는 안정적인 운영 기반을 마련했습니다.
+                </p>
+</div>
+</div>
+</div>
+
+</body></html>
