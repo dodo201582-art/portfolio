@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Project Overview - Fire Safety Institute Big Data Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&amp;display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f3f4f6;
+            overflow: hidden;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background-color: #0f172a; /* Slate 900 */
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            padding: 40px 60px;
+        }
+
+        /* Decorative Background */
+        .bg-element {
+            position: absolute;
+            z-index: 0;
+            opacity: 0.1;
+        }
+        .bg-circle {
+            border-radius: 50%;
+            background-color: #3b82f6;
+        }
+        .bg-grid {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(#334155 1px, transparent 1px), linear-gradient(90deg, #334155 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.05;
+        }
+
+        /* Layout */
+        .header-section {
+            z-index: 10;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 20px;
+        }
+        .project-tag {
+            background-color: rgba(16, 185, 129, 0.2); /* Emerald tint */
+            color: #34d399; /* Emerald 400 */
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .main-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1.2;
+        }
+
+        .content-wrapper {
+            z-index: 10;
+            display: flex;
+            gap: 40px;
+            height: 100%;
+        }
+
+        /* Left Column */
+        .left-col {
+            flex: 0 0 350px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .info-card {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .info-label {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .info-value {
+            color: #f1f5f9;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .progress-container {
+            margin-top: 10px;
+        }
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            color: #cbd5e1;
+        }
+        .progress-bar-bg {
+            width: 100%;
+            height: 8px;
+            background-color: #334155;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .team-item {
+            background-color: rgba(30, 41, 59, 0.5);
+            padding: 10px;
+            border-radius: 8px;
+            border-left: 3px solid #64748b;
+        }
+        .team-role {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            margin-bottom: 2px;
+        }
+        .team-count {
+            font-size: 1rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        /* Right Column */
+        .right-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .section-box {
+            background-color: rgba(30, 41, 59, 0.4);
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 25px;
+            height: 100%;
+        }
+
+        .section-header {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #34d399; /* Emerald 400 */
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .tech-tag {
+            background-color: #334155;
+            color: #e2e8f0;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid #475569;
+        }
+
+        .achievement-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .achievement-item {
+            display: flex;
+            align-items: start;
+            gap: 12px;
+            background-color: rgba(16, 185, 129, 0.05); /* Emerald tint */
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+        .check-icon {
+            color: #34d399; /* Emerald 400 */
+            margin-top: 4px;
+        }
+        .achievement-text {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+    </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.mb-3{margin-bottom:0.75rem}.flex{display:flex}.flex-col{flex-direction:column}.items-center{align-items:center}.gap-2{gap:0.5rem}.border-emerald-500{--tw-border-opacity:1;border-color:rgb(16 185 129 / var(--tw-border-opacity, 1))}.text-sm{font-size:0.875rem;line-height:1.25rem}.font-bold{font-weight:700}.leading-relaxed{line-height:1.625}.text-emerald-200{--tw-text-opacity:1;color:rgb(167 243 208 / var(--tw-text-opacity, 1))}.text-emerald-400{--tw-text-opacity:1;color:rgb(52 211 153 / var(--tw-text-opacity, 1))}.text-emerald-500{--tw-text-opacity:1;color:rgb(16 185 129 / var(--tw-text-opacity, 1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}</style><style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.mb-3{margin-bottom:0.75rem}.flex{display:flex}.flex-col{flex-direction:column}.items-center{align-items:center}.gap-2{gap:0.5rem}.border-emerald-500{--tw-border-opacity:1;border-color:rgb(16 185 129 / var(--tw-border-opacity, 1))}.text-sm{font-size:0.875rem;line-height:1.25rem}.font-bold{font-weight:700}.leading-relaxed{line-height:1.625}.text-emerald-200{--tw-text-opacity:1;color:rgb(167 243 208 / var(--tw-text-opacity, 1))}.text-emerald-400{--tw-text-opacity:1;color:rgb(52 211 153 / var(--tw-text-opacity, 1))}.text-emerald-500{--tw-text-opacity:1;color:rgb(16 185 129 / var(--tw-text-opacity, 1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}</style></head>
+<body style="">
+<div class="slide-container">
+<!-- Background -->
+<div class="bg-element bg-grid"></div>
+<div class="bg-element bg-circle" style="top: -100px; right: -100px; width: 400px; height: 400px; background-color: #10b981; opacity: 0.05;"></div>
+<!-- Header -->
+<div class="header-section">
+<span class="project-tag">NCP - Public Cloud Architecture</span>
+<h1 class="main-title">
+                소방안전원(빅데이터플랫폼) 인프라 아키텍처 설계 및 구축
+            </h1>
+</div>
+<!-- Content -->
+<div class="content-wrapper">
+<!-- Left Column: Meta Info -->
+<div class="left-col">
+<!-- Role -->
+<div class="info-card">
+<div class="info-label">
+<i class="fa-solid fa-user-gear"></i>
+<span>Role</span>
+</div>
+<div class="info-value">Cloud Technical Architect</div>
+</div>
+<!-- Contribution -->
+<div class="info-card">
+<div class="info-label">
+<i class="fa-solid fa-chart-pie"></i>
+<span>Contribution</span>
+</div>
+<div class="progress-container">
+<div class="progress-label">
+<span>Architecture Design</span>
+<span class="text-emerald-400 font-bold">100%</span>
+</div>
+<div class="progress-bar-bg">
+<div class="progress-bar-fill" style="width: 100%; background-color: #34d399;"></div>
+</div>
+<div class="progress-label">
+<span>Security Setup</span>
+<span class="text-emerald-400 font-bold">100%</span>
+</div>
+<div class="progress-bar-bg" style="margin-bottom: 0;">
+<div class="progress-bar-fill" style="width: 100%; background-color: #34d399;"></div>
+</div>
+</div>
+</div>
+<!-- Focus Areas -->
+<div class="info-card">
+<div class="info-label mb-3">
+<i class="fa-solid fa-crosshairs"></i>
+<span>Focus Areas</span>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-slate-300 text-sm">
+<i class="fa-solid fa-shield-halved text-emerald-500"></i>
+<span>Security &amp; Compliance</span>
+</div>
+<div class="flex items-center gap-2 text-slate-300 text-sm">
+<i class="fa-solid fa-network-wired text-emerald-500"></i>
+<span>Network Isolation</span>
+</div>
+<div class="flex items-center gap-2 text-slate-300 text-sm">
+<i class="fa-solid fa-expand text-emerald-500"></i>
+<span>Scalability</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Details -->
+<div class="right-col">
+<!-- Summary -->
+<div class="section-box" style="flex: 0 0 auto;">
+<div class="section-header">
+<i class="fa-solid fa-circle-info"></i>
+<span>Project Summary</span>
+</div>
+<p class="text-slate-300 leading-relaxed">
+                        NAVER Cloud Platform(NCP) 기반의 <strong>빅데이터 플랫폼 인프라 아키텍처 설계 및 구축</strong> 프로젝트입니다. 
+                        공공 클라우드 환경에서의 <strong>안정성, 보안성, 확장성</strong>을 최우선으로 고려하여 네트워크 및 보안 아키텍처를 수립하였으며, 
+                        엄격한 보안 규정을 준수하는 표준 운영 환경을 구축하였습니다.
+                    </p>
+</div>
+<!-- Tech Stack -->
+<div class="section-box" style="flex: 0 0 auto;">
+<div class="section-header">
+<i class="fa-solid fa-layer-group"></i>
+<span>Tech Stack</span>
+</div>
+<div class="tech-tags">
+<span class="tech-tag border-emerald-500 text-emerald-200">NAVER Cloud Platform</span>
+<span class="tech-tag">VPC / Subnet</span>
+<span class="tech-tag">ACG / NACL</span>
+<span class="tech-tag">WAF</span>
+<span class="tech-tag">IPSec VPN</span>
+<span class="tech-tag">Linux</span>
+<span class="tech-tag">Security Monitoring</span>
+</div>
+</div>
+<!-- Achievements -->
+<div class="section-box" style="flex: 1;">
+<div class="section-header">
+<i class="fa-solid fa-trophy"></i>
+<span>Key Achievements</span>
+</div>
+<div class="achievement-list">
+<div class="achievement-item">
+<i class="fa-solid fa-check check-icon"></i>
+<p class="achievement-text">
+<strong class="text-white">보안 네트워크 아키텍처 설계:</strong> 
+                                Zone 분리, ACL 정책, 라우팅 설계를 통해 외부 위협으로부터 안전한 데이터 처리 환경 구축
+                            </p>
+</div>
+<div class="achievement-item">
+<i class="fa-solid fa-check check-icon"></i>
+<p class="achievement-text">
+<strong class="text-white">인프라 표준화 및 운영 최적화:</strong> 
+                                서비스 가용성과 확장성을 고려한 인프라 구성 표준 수립 및 운영 매뉴얼화
+                            </p>
+</div>
+<div class="achievement-item">
+<i class="fa-solid fa-check check-icon"></i>
+<p class="achievement-text">
+<strong class="text-white">보안 취약점 조치 완수:</strong> 
+                                OS 및 애플리케이션 계층 취약점 점검과 선제적 조치로 높은 수준의 보안성 확보
+                            </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</body></html>
