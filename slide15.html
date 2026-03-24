@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Project Details Narrative - KTC Security Verification</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            display: flex;
+            background-color: #0f172a;
+            position: relative;
+        }
+        
+        /* Left Sidebar */
+        .sidebar {
+            width: 380px;
+            background-color: #1e293b;
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #334155;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .project-meta {
+            margin-bottom: 40px;
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 4px 10px;
+            background-color: rgba(59, 130, 246, 0.15);
+            color: #60a5fa;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+        
+        .title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+            color: #94a3b8;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        .highlight-bar {
+            width: 60px;
+            height: 4px;
+            background-color: #3b82f6; /* Gradient replaced with solid color */
+            margin: 25px 0;
+            border-radius: 2px;
+        }
+
+        .key-points {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .key-point-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .icon-circle {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: #334155;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+        
+        /* Removed hover effect that relies on complex CSS not supported in all exporters */
+        .key-point-item .icon-circle {
+            background-color: #334155;
+            color: #94a3b8;
+        }
+        
+        .kp-text {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #cbd5e1;
+            margin: 0;
+        }
+
+        /* Right Content */
+        .content-area {
+            flex: 1;
+            padding: 50px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: #0f172a; /* Radial gradient removed */
+        }
+
+        .narrative-block {
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 24px;
+            border-left: 2px solid #334155;
+        }
+
+        .block-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #e2e8f0;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .block-title i {
+            color: #60a5fa;
+            font-size: 0.9rem;
+        }
+
+        .block-text {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #cbd5e1;
+            text-align: justify;
+            margin: 0;
+        }
+
+        .strong-text {
+            color: #fff;
+            font-weight: 600;
+            background-color: rgba(59, 130, 246, 0.3); /* Linear gradient replaced */
+            padding: 0 2px;
+        }
+
+        .quote-icon {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            font-size: 8rem;
+            color: rgba(255, 255, 255, 0.03);
+            font-family: serif;
+            z-index: 0;
+        }
+
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<!-- Sidebar -->
+<div class="sidebar">
+<div class="project-meta">
+<span class="tag">PROJECT DETAILS</span>
+<h1 class="title">프로젝트<br/>상세 내용</h1>
+<p class="subtitle">과학기술정보통신부 보안실증 및 전환 사업<br/>(KTC CSAP Security Verification)</p>
+<div class="highlight-bar"></div>
+</div>
+<div class="key-points">
+<div class="key-point-item">
+<div class="icon-circle">
+<i class="fa-solid fa-server"></i>
+</div>
+<p class="kp-text">Closed Network Monitoring</p>
+</div>
+<div class="key-point-item">
+<div class="icon-circle">
+<i class="fa-solid fa-clipboard-check"></i>
+</div>
+<p class="kp-text">Environment Analysis</p>
+</div>
+<div class="key-point-item">
+<div class="icon-circle">
+<i class="fa-solid fa-right-left"></i>
+</div>
+<p class="kp-text">JBoss to Tomcat</p>
+</div>
+<div class="key-point-item">
+<div class="icon-circle">
+<i class="fa-solid fa-stopwatch"></i>
+</div>
+<p class="kp-text">Performance &amp; Security</p>
+</div>
+</div>
+</div>
+<!-- Content Area -->
+<div class="content-area">
+<i class="fa-solid fa-quote-right quote-icon"></i>
+<!-- Block 1: Monitoring in Closed Network -->
+<div class="narrative-block">
+<h3 class="block-title">
+<i class="fa-solid fa-eye"></i> 폐쇄망(상등급) 모니터링 체계 구축
+            </h3>
+<p class="block-text">
+                가장 큰 설계 과제는 법적으로 외부 통신이 완전히 차단되는 <span class="strong-text">CSAP 상 등급 폐쇄망 Zone</span>의 모니터링이었습니다. 외부 솔루션 연결이 불가능한 제약 속에서, <span class="strong-text">내부망에 Zabbix 서버를 직접 구축</span>하여 CPU, 메모리, 디스크 등 주요 시스템 지표를 실시간으로 수집하고 알람까지 동작하는 독자적인 모니터링 체계를 완성했습니다.
+            </p>
+</div>
+<!-- Block 2: Environment Analysis -->
+<div class="narrative-block">
+<h3 class="block-title">
+<i class="fa-solid fa-magnifying-glass"></i> 기존 환경 분석 및 협업
+            </h3>
+<p class="block-text">
+                클라우드 전환의 첫 단계로 세종 과기부 청사 전산 담당자와 긴밀히 소통하며 기존 서버 구성과 데이터 현황을 면밀히 파악했습니다. 물리적 거리와 보안 절차로 인해 상당한 시간이 소요되었으나, 정확한 자산 식별과 <span class="strong-text">리스크 없는 이관 계획</span>을 수립하여 정해진 일정 내에 마이그레이션 준비를 마쳤습니다.
+            </p>
+</div>
+<!-- Block 3: Middleware Migration -->
+<div class="narrative-block">
+<h3 class="block-title">
+<i class="fa-solid fa-arrow-right-arrow-left"></i> JBoss → Tomcat 전환 및 업그레이드
+            </h3>
+<p class="block-text">
+                기존 JBoss 기반 애플리케이션을 <span class="strong-text">Tomcat으로 전환(Migration)</span>하며 동시에 미들웨어 버전 업그레이드를 수행했습니다. 이 과정에서 설정 파일과 의존성 구조를 재검토하여 호환성 이슈를 사전에 해결했고, 결과적으로 클라우드 환경에 최적화된 경량화된 WAS 구조를 확립했습니다.
+            </p>
+</div>
+<!-- Block 4: Performance & Security -->
+<div class="narrative-block">
+<h3 class="block-title">
+<i class="fa-solid fa-chart-line"></i> 성능 검증 및 보안 연동
+            </h3>
+<p class="block-text">
+                전환 완료 후 <span class="strong-text">Apache JMeter</span>를 활용해 응답 시간과 동시 접속 안정성을 검증하여 실증 요건을 충족했습니다. 또한, 나주 사이버안전센터와의 <span class="strong-text">VPN 전용선 연결 및 vIDS(가상 침입탐지시스템) 연동</span>을 성공적으로 수행하여 보안 관제 체계까지 완벽하게 통합했습니다.
+            </p>
+</div>
+</div>
+</div>
+</body>
+</html>
