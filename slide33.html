@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Thank You - Kim DoHun Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #0f172a;
+            overflow: hidden;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background-color: #0f172a; /* Slate 900 */
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Background Pattern (SVG replacement for gradients) */
+        .bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231e293b' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+            z-index: 0;
+        }
+
+        /* Ambient Light Circles (Solid colors with opacity instead of gradients) */
+        .ambient-circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+        }
+        .circle-1 {
+            top: -100px;
+            left: -100px;
+            width: 500px;
+            height: 500px;
+            background-color: rgba(59, 130, 246, 0.1); /* Blue */
+        }
+        .circle-2 {
+            bottom: -100px;
+            right: -100px;
+            width: 600px;
+            height: 600px;
+            background-color: rgba(6, 182, 212, 0.08); /* Cyan */
+        }
+
+        /* Content Wrapper */
+        .content-wrapper {
+            z-index: 10;
+            width: 100%;
+            max-width: 1000px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 50px;
+        }
+
+        /* Main Message */
+        .thank-you-section {
+            text-align: center;
+        }
+        .main-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            color: white;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+        .sub-message {
+            font-size: 1.25rem;
+            color: #94a3b8; /* Slate 400 */
+            font-weight: 300;
+        }
+
+        /* Contact Card */
+        .contact-card {
+            background-color: rgba(30, 41, 59, 0.6); /* Slate 800 with opacity */
+            border: 1px solid #334155;
+            border-radius: 20px;
+            padding: 40px 60px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .profile-name {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: white;
+        }
+        .profile-role {
+            font-size: 1.1rem;
+            color: #60a5fa; /* Blue 400 */
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #cbd5e1; /* Slate 300 */
+            font-size: 1.1rem;
+        }
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(59, 130, 246, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #60a5fa;
+            font-size: 1rem;
+        }
+        
+        /* Personal Highlights (Bottom Row) */
+        .highlights-row {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            width: 100%;
+        }
+        .highlight-badge {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 24px;
+            background-color: rgba(15, 23, 42, 0.6);
+            border: 1px solid #334155;
+            border-radius: 50px;
+            color: #94a3b8;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+        .highlight-badge i {
+            color: #64748b;
+        }
+        .highlight-badge:hover {
+            border-color: #64748b;
+            background-color: rgba(30, 41, 59, 0.8);
+            color: #e2e8f0;
+        }
+        .highlight-badge:hover i {
+            color: #e2e8f0;
+        }
+
+        /* Decorative Elements */
+        .divider {
+            height: 1px;
+            width: 100px;
+            background-color: #3b82f6;
+            margin: 0 auto 30px auto;
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<!-- Background Elements -->
+<div class="bg-pattern"></div>
+<div class="ambient-circle circle-1"></div>
+<div class="ambient-circle circle-2"></div>
+<div class="content-wrapper">
+<!-- Main Title Section -->
+<div class="thank-you-section">
+<h1 class="main-title">Thank You</h1>
+<div class="divider"></div>
+<p class="sub-message">귀한 시간을 내어 포트폴리오를 검토해 주셔서 감사합니다.<br/>비즈니스 목표를 실현하는 클라우드 아키텍트가 되겠습니다.</p>
+</div>
+<!-- Contact Card -->
+<div class="contact-card">
+<div class="profile-info">
+<p class="profile-role">Cloud Technical Architect</p>
+<p class="profile-name">김도훈</p>
+</div>
+<div class="contact-details">
+<div class="contact-item">
+<div class="contact-icon">
+<i class="fa-solid fa-phone"></i>
+</div>
+<p>010-2423-8930</p>
+</div>
+<div class="contact-item">
+<div class="contact-icon">
+<i class="fa-solid fa-envelope"></i>
+</div>
+<p>specialmoons@naver.com</p>
+</div>
+<div class="contact-item">
+<div class="contact-icon">
+<i class="fa-brands fa-github"></i>
+</div>
+<p>github.com/kimdohun-portfolio</p> <!-- Placeholder for actual link -->
+</div>
+</div>
+</div>
+<!-- Personal Highlights (TMI/Story) -->
+<div class="highlights-row">
+<div class="highlight-badge">
+<i class="fa-solid fa-dumbbell"></i>
+<p>취미: 헬스 (20kg 감량 유지)</p>
+</div>
+<div class="highlight-badge">
+<i class="fa-solid fa-walkie-talkie"></i>
+<p>군 복무: 통신병 (성실한 복무)</p>
+</div>
+<div class="highlight-badge">
+<i class="fa-solid fa-industry"></i>
+<p>생산 인턴 경험 (현장 이해)</p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
