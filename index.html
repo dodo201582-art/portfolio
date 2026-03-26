@@ -11,272 +11,185 @@
       --bg:      #0c0c0c;
       --nav-bg: rgba(12,12,12,0.94);
       --border: rgba(255,255,255,0.08);
-      --muted:  rgba(255,255,255,0.28);
       --text:   rgba(255,255,255,0.85);
-      --dur:    400ms; /* 애니메이션 속도 현실화 */
+      --dur:    300ms; /* 지연 없는 깔끔한 속도 */
       --nav-h:  52px;
-      --bar-h:  60px;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { height: 100%; height: -webkit-fill-available; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      height: 100dvh;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      padding-top:    env(safe-area-inset-top);
-      padding-bottom: env(safe-area-inset-bottom);
-    }
+    html, body { height: 100%; background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; overflow: hidden; }
 
     /* ─── NAV ─── */
     nav {
-      height: var(--nav-h);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 20px;
-      flex-shrink: 0;
-      position: relative;
-      z-index: 20;
-      background: var(--nav-bg);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
+      height: var(--nav-h); display: flex; align-items: center; justify-content: space-between;
+      padding: 0 20px; position: relative; z-index: 20; background: var(--nav-bg);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border);
     }
-
     .nav-logo { font-size: 13px; font-weight: 400; color: rgba(255,255,255,0.9); }
-
-    .page-tabs {
-      position: absolute; left: 50%; transform: translateX(-50%);
-      display: flex; align-items: center; gap: 1px;
-    }
+    .page-tabs { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 2px; }
     .tab-btn {
-      background: none; border: none; color: rgba(255,255,255,0.22);
-      font-family: 'DM Sans', sans-serif; font-size: 11px; width: 26px; height: 26px;
-      border-radius: 5px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+      background: none; border: none; color: rgba(255,255,255,0.22); font-size: 11px;
+      width: 26px; height: 26px; border-radius: 5px; cursor: pointer; display: flex; align-items: center; justify-content: center;
     }
-    .tab-btn.active { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.9); font-weight: 500; }
-    .tab-ellipsis { color: rgba(255,255,255,0.12); font-size: 10px; padding: 0 2px; }
-
-    .nav-right { display: flex; align-items: center; gap: 6px; }
-    .counter-badge { font-size: 11px; color: rgba(255,255,255,0.3); min-width: 36px; text-align: right; }
-    .counter-badge em { color: rgba(255,255,255,0.7); font-style: normal; }
-
-    .arrow-btn {
-      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
-      color: rgba(255,255,255,0.5); width: 30px; height: 30px; border-radius: 6px;
-      cursor: pointer; display: flex; align-items: center; justify-content: center;
-    }
-
-    .nav-progress { position: absolute; bottom: 0; left: 0; height: 1px; background: rgba(255,255,255,0.35); transition: width 0.3s ease; }
+    .tab-btn.active { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.9); font-weight: 600; }
+    .nav-right { display: flex; align-items: center; gap: 8px; }
+    .counter-badge { font-size: 11px; color: rgba(255,255,255,0.3); }
+    .nav-progress { position: absolute; bottom: 0; left: 0; height: 1px; background: rgba(255,255,255,0.6); transition: width 0.2s ease; }
 
     /* ─── STAGE ─── */
-    .stage {
-      flex: 1; position: relative; overflow: hidden; outline: none;
-      z-index: 1;
-    }
-
-    /* overlay - 슬라이드 전환 중일 때만 iframe 클릭을 막음 */
-    .slide-overlay {
-      position: absolute; inset: 0; z-index: 10;
-      pointer-events: none; /* 평상시엔 iframe 클릭 허용 */
-    }
-    .stage.animating .slide-overlay {
-      pointer-events: all; /* 전환 애니메이션 중엔 클릭 방지 */
-    }
-
+    #stage { flex: 1; height: calc(100vh - var(--nav-h)); position: relative; overflow: hidden; }
+    
     .slide {
-      position: absolute; inset: 0;
-      transition: transform var(--dur) cubic-bezier(0.2, 0.8, 0.2, 1), opacity var(--dur) ease;
+      position: absolute; inset: 0; opacity: 0; pointer-events: none;
+      transition: transform var(--dur) cubic-bezier(0.25, 1, 0.5, 1), opacity var(--dur) ease;
       will-change: transform, opacity;
     }
-    .slide iframe {
-      width: 1280px; height: 720px; border: none; display: block;
-      transform-origin: top left;
-      pointer-events: all; /* iframe 내부 클릭 허용 */
-    }
+    .slide.current { opacity: 1; transform: translateY(0); pointer-events: all; z-index: 2; }
+    .slide.offTop { transform: translateY(-100%); opacity: 0; }
+    .slide.offBottom { transform: translateY(100%); opacity: 0; }
 
-    .slide.current { transform: translateY(0); opacity: 1; z-index: 2; }
-    .slide.offTop { transform: translateY(-30px); opacity: 0; z-index: 1; }
-    .slide.offBottom { transform: translateY(30px); opacity: 0; z-index: 1; }
+    iframe { width: 1280px; height: 720px; border: none; transform-origin: top left; display: block; }
 
-    /* ─── SCROLL HINT ─── */
-    .scroll-hint {
-      position: absolute; left: 24px; bottom: 36px; z-index: 15;
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
-      pointer-events: none; animation: hintAppear 0.8s 1.2s ease forwards; opacity: 0;
+    /* ─── UI ELEMENTS ─── */
+    .arrow-btn {
+      background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+      color: white; width: 30px; height: 30px; border-radius: 6px; cursor: pointer;
     }
-    .scroll-hint.hidden { display: none; }
-    @keyframes hintAppear { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
-
-    /* ─── MOBILE BOTTOM ─── */
-    .bottom-bar {
-      display: none; height: var(--bar-h); align-items: center; padding: 0 16px; gap: 12px;
-      background: var(--nav-bg); border-top: 1px solid var(--border);
-    }
+    .bottom-bar { display: none; padding: 10px; background: var(--nav-bg); border-top: 1px solid var(--border); }
 
     @media (max-width: 600px) {
       .page-tabs, .nav-right { display: none; }
-      .bottom-bar { display: flex; }
+      .bottom-bar { display: flex; align-items: center; gap: 10px; }
     }
   </style>
 </head>
 <body>
 
 <nav>
-  <div class="nav-logo">Cloud Technical Architect <strong>김도훈</strong></div>
+  <div class="nav-logo">Cloud TA <strong>김도훈</strong></div>
   <div class="page-tabs" id="pageTabs"></div>
   <div class="nav-right">
-    <span class="counter-badge"><em id="curNum">1</em>&thinsp;/&thinsp;<span id="totNum">33</span></span>
-    <button class="arrow-btn" id="prevBtn">↑</button>
-    <button class="arrow-btn" id="nextBtn">↓</button>
+    <span class="counter-badge"><em id="curNum">1</em> / 33</span>
+    <button class="arrow-btn" onclick="goPrev()">↑</button>
+    <button class="arrow-btn" onclick="goNext()">↓</button>
   </div>
-  <div class="nav-progress" id="navProgress"></div>
+  <div id="navProgress" class="nav-progress"></div>
 </nav>
 
-<div class="stage" id="stage" tabindex="-1">
-  <div class="slide-overlay" id="slideOverlay"></div>
-  <div class="scroll-hint" id="scrollHint">
-    <span class="hint-label" style="font-size: 9px; letter-spacing: 0.2em; color: rgba(255,255,255,0.4); writing-mode: vertical-rl;">SCROLL</span>
-  </div>
-</div>
+<main id="stage"></main>
 
 <div class="bottom-bar">
-  <button class="arrow-btn" id="prevBtnM">↑</button>
-  <div style="flex: 1; display: flex; flex-direction: column; gap: 4px;">
-    <input type="range" id="pageSlider" min="0" max="32" value="0" style="width: 100%; accent-color: white;">
-  </div>
-  <button class="arrow-btn" id="nextBtnM">↓</button>
+  <button class="arrow-btn" onclick="goPrev()">↑</button>
+  <input type="range" id="pageSlider" min="0" max="32" value="0" style="flex:1; accent-color:white;">
+  <button class="arrow-btn" onclick="goNext()">↓</button>
 </div>
 
 <script>
-  const SLIDES = Array.from({ length: 33 }, (_, i) => `slide${String(i + 1).padStart(2, '0')}.html`);
-  const TOTAL = SLIDES.length;
+  const TOTAL = 33;
   let current = 0;
   let animating = false;
-
-  const stage = document.getElementById('stage');
-  const pageTabsEl = document.getElementById('pageTabs');
-  const navProgress = document.getElementById('navProgress');
-  const curNum = document.getElementById('curNum');
-  const totNum = document.getElementById('totNum');
-  const pageSlider = document.getElementById('pageSlider');
-
-  totNum.textContent = TOTAL;
-
-  // ── 탭 빌더 ──
-  function buildTabs() {
-    pageTabsEl.innerHTML = '';
-    const WIN = 5;
-    let s = Math.max(0, current - 2);
-    let e = Math.min(TOTAL - 1, s + WIN - 1);
-    if (e - s < WIN - 1) s = Math.max(0, e - WIN + 1);
-
-    for (let i = s; i <= e; i++) {
-      const btn = document.createElement('button');
-      btn.className = 'tab-btn' + (i === current ? ' active' : '');
-      btn.textContent = i + 1;
-      btn.onclick = () => goTo(i);
-      pageTabsEl.appendChild(btn);
-    }
-  }
-
-  // ── 슬라이드 로드 및 스케일 ──
-  const slideEls = [];
   const SLIDE_W = 1280, SLIDE_H = 720;
 
-  SLIDES.forEach((src, i) => {
+  const stage = document.getElementById('stage');
+  const slideEls = [];
+
+  // 초기 슬라이드 구조 생성
+  for (let i = 0; i < TOTAL; i++) {
     const div = document.createElement('div');
-    div.className = 'slide ' + (i === 0 ? 'current' : 'offBottom');
+    div.className = `slide ${i === 0 ? 'current' : 'offBottom'}`;
     stage.appendChild(div);
-    slideEls.push({ el: div, src, loaded: false });
-  });
+    slideEls.push({ el: div, loaded: false, src: `slide${String(i + 1).padStart(2, '0')}.html` });
+  }
 
   function scaleIframe(iframe) {
     const sw = stage.clientWidth, sh = stage.clientHeight;
     const scale = Math.min(sw / SLIDE_W, sh / SLIDE_H);
-    const ox = (sw - SLIDE_W * scale) / 2;
-    const oy = (sh - SLIDE_H * scale) / 2;
-    iframe.style.transform = `translate(${ox}px, ${oy}px) scale(${scale})`;
+    iframe.style.transform = `translate(${(sw - SLIDE_W * scale) / 2}px, ${(sh - SLIDE_H * scale) / 2}px) scale(${scale})`;
   }
 
   function loadSlide(i) {
     if (i < 0 || i >= TOTAL || slideEls[i].loaded) return;
     const s = slideEls[i];
     s.loaded = true;
-    const iframe = document.createElement('iframe');
-    iframe.src = s.src;
-    iframe.onload = () => scaleIframe(iframe);
-    s.el.appendChild(iframe);
+    const ifr = document.createElement('iframe');
+    ifr.src = s.src;
+    ifr.onload = () => {
+      scaleIframe(ifr);
+      // [핵심] iframe 내부 키보드 이벤트 가로채기
+      try {
+        ifr.contentWindow.addEventListener('keydown', handleKey);
+        ifr.contentWindow.addEventListener('wheel', handleWheel, { passive: false });
+      } catch(e) { console.warn("Cross-origin restriction or file not found."); }
+    };
+    s.el.appendChild(ifr);
   }
 
-  // ── 이동 핵심 로직 ──
   function goTo(next) {
     if (next === current || next < 0 || next >= TOTAL || animating) return;
     animating = true;
-    stage.classList.add('animating');
-    document.getElementById('scrollHint').classList.add('hidden');
-
+    
     const from = slideEls[current].el;
     const to = slideEls[next].el;
+    
     loadSlide(next);
-
-    // 클래스 교체로 애니메이션 트리거
+    
+    // 즉각적인 클래스 변경
     to.className = 'slide current';
     from.className = next > current ? 'slide offTop' : 'slide offBottom';
-
+    
     current = next;
-    setTimeout(() => {
-      animating = false;
-      stage.classList.remove('animating');
-      updateUI();
-    }, 400);
+    updateUI();
+    
+    setTimeout(() => { animating = false; }, 300); // --dur와 일치
+  }
+
+  const goNext = () => goTo(current + 1);
+  const goPrev = () => goTo(current - 1);
+
+  function handleKey(e) {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') goNext();
+    if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') goPrev();
+  }
+
+  let lastWheel = 0;
+  function handleWheel(e) {
+    const now = Date.now();
+    if (now - lastWheel < 500) return; 
+    if (Math.abs(e.deltaY) < 20) return;
+    lastWheel = now;
+    e.deltaY > 0 ? goNext() : goPrev();
   }
 
   function updateUI() {
-    curNum.textContent = current + 1;
-    navProgress.style.width = ((current / (TOTAL - 1)) * 100) + '%';
-    pageSlider.value = current;
-    buildTabs();
-    // 주변 슬라이드 미리 로드
+    document.getElementById('curNum').textContent = current + 1;
+    document.getElementById('navProgress').style.width = `${(current / (TOTAL - 1)) * 100}%`;
+    document.getElementById('pageSlider').value = current;
+    
+    // 탭 업데이트
+    const tabs = document.getElementById('pageTabs');
+    tabs.innerHTML = '';
+    const start = Math.max(0, current - 2), end = Math.min(TOTAL - 1, start + 4);
+    for (let i = start; i <= end; i++) {
+      const b = document.createElement('button');
+      b.className = `tab-btn ${i === current ? 'active' : ''}`;
+      b.textContent = i + 1;
+      b.onclick = () => goTo(i);
+      tabs.appendChild(b);
+    }
+    // 인접 슬라이드 예비 로드
     loadSlide(current + 1);
     loadSlide(current - 1);
   }
 
-  // ── 이벤트 리스너 ──
-  let lastWheel = 0;
-  function handleWheel(e) {
-    const now = Date.now();
-    if (now - lastWheel < 600) return; // 감도 조절
-    if (Math.abs(e.deltaY) < 30) return;
-    
-    lastWheel = now;
-    e.deltaY > 0 ? goTo(current + 1) : goTo(current - 1);
-  }
+  // 이벤트 바인딩
+  window.addEventListener('keydown', handleKey);
+  window.addEventListener('wheel', handleWheel, { passive: false });
+  window.addEventListener('resize', () => document.querySelectorAll('iframe').forEach(scaleIframe));
+  document.getElementById('pageSlider').oninput = (e) => goTo(parseInt(e.target.value));
 
-  // iframe 위에서도 휠을 감지하기 위해 window에 등록 (일부 브라우저 제약 있음)
-  window.addEventListener('wheel', handleWheel, { passive: true });
-  stage.addEventListener('wheel', handleWheel, { passive: true });
-
-  document.getElementById('prevBtn').onclick = () => goTo(current - 1);
-  document.getElementById('nextBtn').onclick = () => goTo(current + 1);
-  document.getElementById('prevBtnM').onclick = () => goTo(current - 1);
-  document.getElementById('nextBtnM').onclick = () => goTo(current + 1);
-  pageSlider.oninput = (e) => goTo(parseInt(e.target.value));
-
-  window.onresize = () => {
-    document.querySelectorAll('iframe').forEach(scaleIframe);
-  };
-
-  // 초기 실행
+  // 시작
   loadSlide(0);
   updateUI();
 </script>
-
 </body>
 </html>
