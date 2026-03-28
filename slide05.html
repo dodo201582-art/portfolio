@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>Main Projects - Kim DoHun</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
@@ -90,8 +90,6 @@
         .project-card:hover::before {
             opacity: 1;
         }
-
-        /* ── 클릭 가능한 카드 (Project 1) ── */
         .project-card.clickable {
             cursor: pointer;
             border-color: rgba(59, 130, 246, 0.35);
@@ -103,23 +101,6 @@
             border-color: #3b82f6;
             box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.5);
         }
-        .card-link-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            background-color: rgba(59, 130, 246, 0.15);
-            border: 1px solid rgba(59, 130, 246, 0.4);
-            color: #60a5fa;
-            font-size: 0.7rem;
-            font-weight: 700;
-            padding: 3px 8px;
-            border-radius: 20px;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            margin-left: auto;
-            z-index: 2;
-        }
-
         .project-num {
             font-size: 3rem;
             font-weight: 900;
@@ -168,131 +149,98 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
-        .card-footer {
-            z-index: 1;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid rgba(51, 65, 85, 0.5);
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-        .tech-icon {
-            font-size: 1rem;
-            color: #64748b;
-        }
         .project-grid > div:nth-child(5) {
             grid-column: 1 / span 1;
         }
     </style>
-<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.z-10{z-index:10}.mb-2{margin-bottom:0.5rem}.flex{display:flex}.grid{display:grid}.w-full{width:100%}.flex-1{flex:1 1 0%}.grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.items-center{align-items:center}.justify-center{justify-content:center}.gap-6{gap:1.5rem}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-dashed{border-style:dashed}.border-slate-700{--tw-border-opacity:1;border-color:rgb(51 65 85 / var(--tw-border-opacity, 1))}.bg-slate-900\/50{background-color:rgb(15 23 42 / 0.5)}.text-center{text-align:center}.text-sm{font-size:0.875rem;line-height:1.25rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.uppercase{text-transform:uppercase}.tracking-widest{letter-spacing:0.1em}.text-blue-400{--tw-text-opacity:1;color:rgb(96 165 250 / var(--tw-text-opacity, 1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105 / var(--tw-text-opacity, 1))}</style></head>
+</head>
 <body>
-<div class="slide-container" style="transform: scale(1);">
-<div style="position: absolute; top: -100px; left: -100px; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%); z-index: 0;"></div>
-<div style="position: absolute; bottom: -100px; right: -100px; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(14, 165, 233, 0.05) 0%, transparent 70%); z-index: 0;"></div>
-<div class="header-section z-10">
-<div>
-<p class="text-blue-400 font-bold tracking-widest uppercase mb-2 text-sm" contenteditable="true" data-ed="1">Portfolio Highlights</p>
-<h1 class="main-title" contenteditable="true" data-ed="1">Main Projects</h1>
-</div>
-</div>
-<div class="grid grid-cols-4 gap-6 w-full flex-1 z-10">
+<div class="slide-container">
+  <div style="position: absolute; top: -100px; left: -100px; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%); z-index: 0;"></div>
+  <div style="position: absolute; bottom: -100px; right: -100px; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(14,165,233,0.05) 0%, transparent 70%); z-index: 0;"></div>
 
-<!-- Project 1 -->
-<div class="project-card clickable" onclick="window.parent.postMessage({type:'goToSlide',index:5},'*')">
-<div class="project-num">01</div>
-<div>
-<span class="csp-tag tag-multi" contenteditable="true" data-ed="1">KTC &amp; NHN</span>
-<h2 class="project-title" contenteditable="true" data-ed="1">AI 기초학력진단 시스템<br>1차 구축 사업</h2>
-<p class="project-desc" contenteditable="true" data-ed="1">멀티클라우드(KT-NHN) 기반 MSA 아키텍처 설계</p>
-</div>
-<div class="card-footer">
-<span class="card-link-badge" contenteditable="true" data-ed="1">View Detail →</span>
-</div>
-</div>
+  <div class="header-section z-10">
+    <div>
+      <p class="text-blue-400 font-bold tracking-widest uppercase mb-2 text-sm">Portfolio Highlights</p>
+      <h1 class="main-title">Main Projects</h1>
+    </div>
+  </div>
 
-<!-- Project 2 -->
-<div class="project-card clickable" onclick="window.parent.postMessage({type:'goToSlide',index:11},'*')">
-<div class="project-num">02</div>
-<div>
-<span class="csp-tag tag-ktc" contenteditable="true" data-ed="1">KT Cloud</span>
-<h2 class="project-title" contenteditable="true" data-ed="1">과학기술정보통신부<br>보안실증 및 전환 사업</h2>
-<p class="project-desc" contenteditable="true" data-ed="1">CSAP 상·중 등급 보안 요건 충족 아키텍처 설계 및 폐쇄망 모니터링 구축</p>
-</div>
-<div class="card-footer">
-<span class="card-link-badge" contenteditable="true" data-ed="1">View Detail →</span>
-</div>
-</div>
+  <div class="grid grid-cols-4 gap-6 w-full flex-1 z-10">
 
-<!-- Project 3 -->
-<div class="project-card clickable" onclick="window.parent.postMessage({type:'goToSlide',index:15},'*')">
-<div class="project-num">03</div>
-<div>
-<span class="csp-tag tag-nhn" contenteditable="true" data-ed="1">NHN Cloud</span>
-<h2 class="project-title" contenteditable="true" data-ed="1">NIA 민간 클라우드<br>2차 전환 사업</h2>
-<p class="project-desc" contenteditable="true" data-ed="1">온프레미스에서 공공 클라우드로의 전환 및 고가용성(HA) 아키텍처 재설계</p>
-</div>
-<div class="card-footer">
-<span class="card-link-badge" contenteditable="true" data-ed="1">View Detail →</span>
-</div>
-</div>
+    <!-- Project 1 -->
+    <div class="project-card clickable" onclick="window.parent.postMessage({type:'goToSlide',index:5},'*')">
+      <div class="project-num">01</div>
+      <div>
+        <span class="csp-tag tag-multi">KTC &amp; NHN</span>
+        <h2 class="project-title">AI 기초학력진단 시스템<br>1차 구축 사업</h2>
+        <p class="project-desc">멀티클라우드(KT-NHN) 기반 MSA 아키텍처 설계</p>
+      </div>
+    </div>
 
-<!-- Project 4 -->
-<div class="project-card clickable" onclick="window.parent.postMessage({type:'goToSlide',index:19},'*')">
-<div class="project-num">04</div>
-<div>
-<span class="csp-tag tag-aws" contenteditable="true" data-ed="1">AWS</span>
-<h2 class="project-title" contenteditable="true" data-ed="1">AWS SMB Competency<br>TFT</h2>
-<p class="project-desc" contenteditable="true" data-ed="1">AWS 파트너 역량 강화를 위한 TFT 활동 및 Competency 취득 주도</p>
-</div>
-<div class="card-footer">
-<span class="card-link-badge" contenteditable="true" data-ed="1">View Detail →</span>
-</div>
-</div>
+    <!-- Project 2 -->
+    <div class="project-card clickable" onclick="window.parent.postMessage({type:'goToSlide',index:11},'*')">
+      <div class="project-num">02</div>
+      <div>
+        <span class="csp-tag tag-ktc">KT Cloud</span>
+        <h2 class="project-title">과학기술정보통신부<br>보안실증 및 전환 사업</h2>
+        <p class="project-desc">CSAP 상·중 등급 보안 요건 충족 아키텍처 설계 및 폐쇄망 모니터링 구축</p>
+      </div>
+    </div>
 
-<!-- Project 5 -->
-<div class="project-card clickable" onclick="window.parent.postMessage({type:'goToSlide',index:21},'*')">
-<div class="project-num">05</div>
-<div>
-<span class="csp-tag tag-ktc" contenteditable="true" data-ed="1">KT Cloud</span>
-<h2 class="project-title" contenteditable="true" data-ed="1">한국소방안전원<br>On-premise 마이그레이션</h2>
-<p class="project-desc" contenteditable="true" data-ed="1">레거시 시스템의 클라우드 전환 및 미들웨어(JEUS/WebtoB) 업그레이드</p>
-</div>
-<div class="card-footer">
-<span class="card-link-badge" contenteditable="true" data-ed="1">View Detail →</span>
-</div>
-</div>
+    <!-- Project 3 -->
+    <div class="project-card clickable" onclick="window.parent.postMessage({type:'goToSlide',index:15},'*')">
+      <div class="project-num">03</div>
+      <div>
+        <span class="csp-tag tag-nhn">NHN Cloud</span>
+        <h2 class="project-title">NIA 민간 클라우드<br>2차 전환 사업</h2>
+        <p class="project-desc">온프레미스에서 공공 클라우드로의 전환 및 고가용성(HA) 아키텍처 재설계</p>
+      </div>
+    </div>
 
-<!-- Project 6 -->
-<div class="project-card clickable" onclick="window.parent.postMessage({type:'goToSlide',index:25},'*')">
-<div class="project-num">06</div>
-<div>
-<span class="csp-tag tag-nhn" contenteditable="true" data-ed="1">NHN Cloud</span>
-<h2 class="project-title" contenteditable="true" data-ed="1">카이스트 LMS 서비스<br>인프라 구축</h2>
-<p class="project-desc" contenteditable="true" data-ed="1">대규모 학습 서비스를 위한 CDN 적용 및 인프라 최적화, 성능 개선</p>
-</div>
-<div class="card-footer">
-<span class="card-link-badge" contenteditable="true" data-ed="1">View Detail →</span>
-</div>
+    <!-- Project 4 -->
+    <div class="project-card clickable" onclick="window.parent.postMessage({type:'goToSlide',index:19},'*')">
+      <div class="project-num">04</div>
+      <div>
+        <span class="csp-tag tag-aws">AWS</span>
+        <h2 class="project-title">AWS SMB Competency<br>TFT</h2>
+        <p class="project-desc">AWS 파트너 역량 강화를 위한 TFT 활동 및 Competency 취득 주도</p>
+      </div>
+    </div>
+
+    <!-- Project 5 -->
+    <div class="project-card clickable" onclick="window.parent.postMessage({type:'goToSlide',index:21},'*')">
+      <div class="project-num">05</div>
+      <div>
+        <span class="csp-tag tag-ktc">KT Cloud</span>
+        <h2 class="project-title">한국소방안전원<br>On-premise 마이그레이션</h2>
+        <p class="project-desc">레거시 시스템의 클라우드 전환 및 미들웨어(JEUS/WebtoB) 업그레이드</p>
+      </div>
+    </div>
+
+    <!-- Project 6 -->
+    <div class="project-card clickable" onclick="window.parent.postMessage({type:'goToSlide',index:25},'*')">
+      <div class="project-num">06</div>
+      <div>
+        <span class="csp-tag tag-nhn">NHN Cloud</span>
+        <h2 class="project-title">카이스트 LMS 서비스<br>인프라 구축</h2>
+        <p class="project-desc">대규모 학습 서비스를 위한 CDN 적용 및 인프라 최적화, 성능 개선</p>
+      </div>
+    </div>
+
+    <!-- Project 7 -->
+    <div class="project-card clickable" onclick="window.parent.postMessage({type:'goToSlide',index:29},'*')">
+      <div class="project-num">07</div>
+      <div>
+        <span class="csp-tag tag-ncp">Naver Cloud</span>
+        <h2 class="project-title">소방안전원(빅데이터)<br>인프라 설계 및 구축</h2>
+        <p class="project-desc">빅데이터 플랫폼을 위한 보안 네트워크 설계 및 인프라 표준 수립</p>
+      </div>
+    </div>
+
+  </div>
 </div>
 
-<!-- Project 7 -->
-<div class="project-card clickable" onclick="window.parent.postMessage({type:'goToSlide',index:29},'*')">
-<div class="project-num">07</div>
-<div>
-<span class="csp-tag tag-ncp" contenteditable="true" data-ed="1">Naver Cloud</span>
-<h2 class="project-title" contenteditable="true" data-ed="1">소방안전원(빅데이터)<br>인프라 설계 및 구축</h2>
-<p class="project-desc" contenteditable="true" data-ed="1">빅데이터 플랫폼을 위한 보안 네트워크 설계 및 인프라 표준 수립</p>
-</div>
-<div class="card-footer">
-<span class="card-link-badge" contenteditable="true" data-ed="1">View Detail →</span>
-</div>
-</div>
-</div>
-</div>
-
-</div>
-</div>
 <script>
     function scaleSlide() {
         const slide = document.querySelector('.slide-container');
