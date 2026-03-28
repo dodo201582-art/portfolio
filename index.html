@@ -12,7 +12,7 @@
       --nav-bg: rgba(12,12,12,0.94);
       --border: rgba(255,255,255,0.08);
       --text:   rgba(255,255,255,0.85);
-      --dur:    300ms; /* 지연 없는 깔끔한 속도 */
+      --dur:    300ms;
       --nav-h:  52px;
     }
 
@@ -38,15 +38,15 @@
 
     /* ─── STAGE ─── */
     #stage { flex: 1; height: calc(100vh - var(--nav-h)); position: relative; overflow: hidden; }
-    
+
     .slide {
       position: absolute; inset: 0; opacity: 0; pointer-events: none;
       transition: transform var(--dur) cubic-bezier(0.25, 1, 0.5, 1), opacity var(--dur) ease;
       will-change: transform, opacity;
     }
-    .slide.current { opacity: 1; transform: translateY(0); pointer-events: all; z-index: 2; }
-    .slide.offTop { transform: translateY(-100%); opacity: 0; }
-    .slide.offBottom { transform: translateY(100%); opacity: 0; }
+    .slide.current  { opacity: 1; transform: translateX(0);     pointer-events: all; z-index: 2; }
+    .slide.offLeft  { opacity: 0; transform: translateX(-100%); }
+    .slide.offRight { opacity: 0; transform: translateX(100%);  }
 
     iframe { width: 1280px; height: 720px; border: none; transform-origin: top left; display: block; }
 
@@ -70,8 +70,8 @@
   <div class="page-tabs" id="pageTabs"></div>
   <div class="nav-right">
     <span class="counter-badge"><em id="curNum">1</em> / 33</span>
-    <button class="arrow-btn" onclick="goPrev()">↑</button>
-    <button class="arrow-btn" onclick="goNext()">↓</button>
+    <button class="arrow-btn" onclick="goPrev()">←</button>
+    <button class="arrow-btn" onclick="goNext()">→</button>
   </div>
   <div id="navProgress" class="nav-progress"></div>
 </nav>
@@ -79,9 +79,9 @@
 <main id="stage"></main>
 
 <div class="bottom-bar">
-  <button class="arrow-btn" onclick="goPrev()">↑</button>
+  <button class="arrow-btn" onclick="goPrev()">←</button>
   <input type="range" id="pageSlider" min="0" max="32" value="0" style="flex:1; accent-color:white;">
-  <button class="arrow-btn" onclick="goNext()">↓</button>
+  <button class="arrow-btn" onclick="goNext()">→</button>
 </div>
 
 <script>
@@ -93,10 +93,9 @@
   const stage = document.getElementById('stage');
   const slideEls = [];
 
-  // 초기 슬라이드 구조 생성
   for (let i = 0; i < TOTAL; i++) {
     const div = document.createElement('div');
-    div.className = `slide ${i === 0 ? 'current' : 'offBottom'}`;
+    div.className = `slide ${i === 0 ? 'current' : 'offRight'}`;
     stage.appendChild(div);
     slideEls.push({ el: div, loaded: false, src: `slide${String(i + 1).padStart(2, '0')}.html` });
   }
@@ -115,10 +114,11 @@
     ifr.src = s.src;
     ifr.onload = () => {
       scaleIframe(ifr);
-      // [핵심] iframe 내부 키보드 이벤트 가로채기
       try {
         ifr.contentWindow.addEventListener('keydown', handleKey);
         ifr.contentWindow.addEventListener('wheel', handleWheel, { passive: false });
+        ifr.contentWindow.addEventListener('touchstart', handleTouchStart, { passive: true });
+        ifr.contentWindow.addEventListener('touchend', handleTouchEnd, { passive: true });
       } catch(e) { console.warn("Cross-origin restriction or file not found."); }
     };
     s.el.appendChild(ifr);
@@ -127,45 +127,86 @@
   function goTo(next) {
     if (next === current || next < 0 || next >= TOTAL || animating) return;
     animating = true;
-    
-    const from = slideEls[current].el;
-    const to = slideEls[next].el;
-    
+
+    const fromEl = slideEls[current].el;
+    const toEl   = slideEls[next].el;
+    const goingRight = next > current;
+
     loadSlide(next);
-    
-    // 즉각적인 클래스 변경
-    to.className = 'slide current';
-    from.className = next > current ? 'slide offTop' : 'slide offBottom';
-    
+
+    // 진입 슬라이드를 화면 밖 준비 (트랜지션 없이)
+    toEl.style.transition = 'none';
+    toEl.className = `slide ${goingRight ? 'offRight' : 'offLeft'}`;
+
+    // 다음 프레임에 트랜지션 켜고 애니메이션
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        toEl.style.transition = '';
+        toEl.className = 'slide current';
+        fromEl.className = `slide ${goingRight ? 'offLeft' : 'offRight'}`;
+      });
+    });
+
     current = next;
     updateUI();
-    
-    setTimeout(() => { animating = false; }, 300); // --dur와 일치
+
+    setTimeout(() => { animating = false; }, 320);
   }
 
   const goNext = () => goTo(current + 1);
   const goPrev = () => goTo(current - 1);
 
+  /* ── 키보드 ── */
   function handleKey(e) {
-    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') goNext();
-    if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') goPrev();
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goNext();
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   goPrev();
   }
 
-  let lastWheel = 0;
+  /* ── 휠: 누적 delta 방식 (뚝뚝 끊김 없음) ── */
+  let wheelAccum = 0;
+  let wheelTimer = null;
+  const WHEEL_THRESHOLD = 80; // px 누적 임계값
+
   function handleWheel(e) {
-    const now = Date.now();
-    if (now - lastWheel < 500) return; 
-    if (Math.abs(e.deltaY) < 20) return;
-    lastWheel = now;
-    e.deltaY > 0 ? goNext() : goPrev();
+    // 수직 스크롤만 처리 (trackpad 핀치 등 제외)
+    const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+    if (Math.abs(delta) < 2) return;
+
+    e.preventDefault();
+    wheelAccum += delta;
+
+    clearTimeout(wheelTimer);
+
+    if (Math.abs(wheelAccum) >= WHEEL_THRESHOLD) {
+      const dir = wheelAccum > 0 ? 1 : -1;
+      wheelAccum = 0;
+      dir > 0 ? goNext() : goPrev();
+    }
+
+    // 일정 시간 후 누적값 리셋 (짧은 스크롤 처리)
+    wheelTimer = setTimeout(() => { wheelAccum = 0; }, 200);
   }
+
+  /* ── 터치 스와이프 ── */
+  let touchStartX = 0;
+  function handleTouchStart(e) { touchStartX = e.touches[0].clientX; }
+  function handleTouchEnd(e) {
+    const dx = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(dx) > 50) dx > 0 ? goNext() : goPrev();
+  }
+
+  window.addEventListener('keydown', handleKey);
+  window.addEventListener('wheel', handleWheel, { passive: false });
+  window.addEventListener('touchstart', handleTouchStart, { passive: true });
+  window.addEventListener('touchend', handleTouchEnd, { passive: true });
+  window.addEventListener('resize', () => document.querySelectorAll('iframe').forEach(scaleIframe));
+  document.getElementById('pageSlider').oninput = (e) => goTo(parseInt(e.target.value));
 
   function updateUI() {
     document.getElementById('curNum').textContent = current + 1;
     document.getElementById('navProgress').style.width = `${(current / (TOTAL - 1)) * 100}%`;
     document.getElementById('pageSlider').value = current;
-    
-    // 탭 업데이트
+
     const tabs = document.getElementById('pageTabs');
     tabs.innerHTML = '';
     const start = Math.max(0, current - 2), end = Math.min(TOTAL - 1, start + 4);
@@ -176,18 +217,10 @@
       b.onclick = () => goTo(i);
       tabs.appendChild(b);
     }
-    // 인접 슬라이드 예비 로드
     loadSlide(current + 1);
     loadSlide(current - 1);
   }
 
-  // 이벤트 바인딩
-  window.addEventListener('keydown', handleKey);
-  window.addEventListener('wheel', handleWheel, { passive: false });
-  window.addEventListener('resize', () => document.querySelectorAll('iframe').forEach(scaleIframe));
-  document.getElementById('pageSlider').oninput = (e) => goTo(parseInt(e.target.value));
-
-  // 시작
   loadSlide(0);
   updateUI();
 </script>
