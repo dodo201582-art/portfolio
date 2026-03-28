@@ -150,14 +150,7 @@
     current = next;
     updateUI();
 
-    setTimeout(() => {
-      animating = false;
-      if (pendingDir !== 0) {
-        const d = pendingDir;
-        pendingDir = 0;
-        d > 0 ? goNext() : goPrev();
-      }
-    }, 320);
+    setTimeout(() => { animating = false; }, 320);
   }
 
   const goNext = () => goTo(current + 1);
@@ -169,34 +162,20 @@
     if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   goPrev();
   }
 
-  /* ── 휠: 누적 delta + 큐 방식 ── */
-  let wheelAccum = 0;
-  let wheelTimer = null;
-  let pendingDir = 0; // 애니 중 대기 방향 (-1 / 0 / 1)
-  const WHEEL_THRESHOLD = 80;
+  /* ── 휠: 방향 전환 감지 방식 ── */
+  let lastWheelTime = 0;
+  const WHEEL_COOLDOWN = 350; // 애니 dur(300) + 여유
 
   function handleWheel(e) {
     const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-    if (Math.abs(delta) < 2) return;
+    if (Math.abs(delta) < 5) return;
     e.preventDefault();
 
-    wheelAccum += delta;
-    clearTimeout(wheelTimer);
+    const now = Date.now();
+    if (now - lastWheelTime < WHEEL_COOLDOWN) return;
+    lastWheelTime = now;
 
-    if (Math.abs(wheelAccum) >= WHEEL_THRESHOLD) {
-      const dir = wheelAccum > 0 ? 1 : -1;
-      wheelAccum = 0;
-
-      if (!animating) {
-        pendingDir = 0;
-        dir > 0 ? goNext() : goPrev();
-      } else {
-        // 애니 중이면 마지막 방향만 저장 (중복 큐 방지)
-        pendingDir = dir;
-      }
-    }
-
-    wheelTimer = setTimeout(() => { wheelAccum = 0; }, 200);
+    delta > 0 ? goNext() : goPrev();
   }
 
   /* ── 터치 스와이프 ── */
