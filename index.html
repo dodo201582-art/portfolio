@@ -16,7 +16,7 @@
       --active-bg: rgba(255,255,255,0.06);
       --nav-h:     48px;
       --side-w:    220px;
-      --dur:       380ms;
+      --dur:       220ms;
       --ease:      cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -123,6 +123,9 @@
     #stage {
       flex: 1; position: relative; overflow: hidden; background: #000;
     }
+    #wheel-overlay {
+      position: absolute; inset: 0; z-index: 10;
+    }
     .slide {
       position: absolute; inset: 0;
       opacity: 0; pointer-events: none;
@@ -156,7 +159,9 @@
       <div class="toc-scroll" id="tocList"></div>
     </aside>
 
-    <main id="stage"></main>
+    <main id="stage">
+      <div id="wheel-overlay"></div>
+    </main>
 
   </div>
 </div>
@@ -290,7 +295,7 @@
 
     current = next;
     updateUI();
-    setTimeout(() => { animating = false; }, 420);
+    setTimeout(() => { animating = false; }, 260);
   }
 
   const goNext = () => goTo(current + 1);
@@ -311,17 +316,26 @@
 
   /* 휠: 사이드바 위면 스크롤, 슬라이드 위면 페이지 이동 */
   const aside   = document.querySelector('aside');
+  const overlay = document.getElementById('wheel-overlay');
   let lastWheel = 0;
 
-  window.addEventListener('wheel', e => {
-    if (aside.matches(':hover')) return; // 사이드바 위 → 기본 스크롤
+  function onSlideWheel(e) {
     e.preventDefault();
     const now = Date.now();
-    if (now - lastWheel < 440) return;
+    if (now - lastWheel < 250) return;
     const d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
     if (Math.abs(d) < 5) return;
     lastWheel = now;
     d > 0 ? goNext() : goPrev();
+  }
+
+  // 오버레이(슬라이드 영역) 휠
+  overlay.addEventListener('wheel', onSlideWheel, { passive: false });
+
+  // window 레벨은 사이드바 제외한 나머지 커버용
+  window.addEventListener('wheel', e => {
+    if (aside.matches(':hover')) return;
+    onSlideWheel(e);
   }, { passive: false });
 
   /* 키보드 */
