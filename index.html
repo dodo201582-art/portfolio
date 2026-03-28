@@ -16,7 +16,7 @@
       --active-bg: rgba(255,255,255,0.06);
       --nav-h:     48px;
       --side-w:    220px;
-      --dur:       220ms;
+      --dur:       0ms;
       --ease:      cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -295,7 +295,7 @@
 
     current = next;
     updateUI();
-    setTimeout(() => { animating = false; }, 260);
+    setTimeout(() => { animating = false; }, 80);
   }
 
   const goNext = () => goTo(current + 1);
@@ -322,7 +322,7 @@
   function onSlideWheel(e) {
     e.preventDefault();
     const now = Date.now();
-    if (now - lastWheel < 250) return;
+    if (now - lastWheel < 80) return;
     const d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
     if (Math.abs(d) < 5) return;
     lastWheel = now;
