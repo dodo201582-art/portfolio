@@ -150,7 +150,14 @@
     current = next;
     updateUI();
 
-    setTimeout(() => { animating = false; }, 320);
+    setTimeout(() => {
+      animating = false;
+      if (pendingDir !== 0) {
+        const d = pendingDir;
+        pendingDir = 0;
+        d > 0 ? goNext() : goPrev();
+      }
+    }, 320);
   }
 
   const goNext = () => goTo(current + 1);
@@ -162,28 +169,33 @@
     if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   goPrev();
   }
 
-  /* ── 휠: 누적 delta 방식 (뚝뚝 끊김 없음) ── */
+  /* ── 휠: 누적 delta + 큐 방식 ── */
   let wheelAccum = 0;
   let wheelTimer = null;
-  const WHEEL_THRESHOLD = 80; // px 누적 임계값
+  let pendingDir = 0; // 애니 중 대기 방향 (-1 / 0 / 1)
+  const WHEEL_THRESHOLD = 80;
 
   function handleWheel(e) {
-    // 수직 스크롤만 처리 (trackpad 핀치 등 제외)
     const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
     if (Math.abs(delta) < 2) return;
-
     e.preventDefault();
-    wheelAccum += delta;
 
+    wheelAccum += delta;
     clearTimeout(wheelTimer);
 
     if (Math.abs(wheelAccum) >= WHEEL_THRESHOLD) {
       const dir = wheelAccum > 0 ? 1 : -1;
       wheelAccum = 0;
-      dir > 0 ? goNext() : goPrev();
+
+      if (!animating) {
+        pendingDir = 0;
+        dir > 0 ? goNext() : goPrev();
+      } else {
+        // 애니 중이면 마지막 방향만 저장 (중복 큐 방지)
+        pendingDir = dir;
+      }
     }
 
-    // 일정 시간 후 누적값 리셋 (짧은 스크롤 처리)
     wheelTimer = setTimeout(() => { wheelAccum = 0; }, 200);
   }
 
