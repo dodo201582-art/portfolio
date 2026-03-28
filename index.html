@@ -85,39 +85,39 @@
     .toc-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.09); border-radius: 2px; }
 
     .toc-chapter {
-      padding: 10px 16px 3px;
-      font-size: 8px; font-weight: 500; letter-spacing: 0.18em;
-      color: rgba(255,255,255,0.16); text-transform: uppercase;
+      padding: 14px 16px 4px;
+      font-size: 9.5px; font-weight: 600; letter-spacing: 0.14em;
+      color: rgba(255,255,255,0.35); text-transform: uppercase;
     }
     .toc-item {
-      display: flex; align-items: center; gap: 9px;
-      padding: 5px 16px 5px 14px; cursor: pointer;
+      display: flex; align-items: center; gap: 10px;
+      padding: 7px 16px 7px 14px; cursor: pointer;
       position: relative;
       transition: background 0.12s;
     }
-    .toc-item:hover { background: rgba(255,255,255,0.035); }
+    .toc-item:hover { background: rgba(255,255,255,0.05); }
     .toc-item.active { background: var(--active-bg); }
     .toc-item.active::before {
       content: '';
       position: absolute; left: 0; top: 0; bottom: 0;
-      width: 2px; background: rgba(255,255,255,0.55);
+      width: 2px; background: rgba(255,255,255,0.7);
       border-radius: 0 1px 1px 0;
     }
     .toc-num {
-      font-family: 'DM Mono', monospace; font-size: 9px;
-      color: var(--muted); min-width: 20px; text-align: right;
+      font-family: 'DM Mono', monospace; font-size: 10px;
+      color: rgba(255,255,255,0.3); min-width: 20px; text-align: right;
       flex-shrink: 0; transition: color 0.12s;
     }
-    .toc-item.active .toc-num { color: rgba(255,255,255,0.38); }
+    .toc-item.active .toc-num { color: rgba(255,255,255,0.5); }
     .toc-label {
-      font-size: 11px; font-weight: 400;
-      color: var(--muted);
+      font-size: 13px; font-weight: 400;
+      color: rgba(255,255,255,0.55);
       line-height: 1.4; white-space: nowrap;
       overflow: hidden; text-overflow: ellipsis;
       transition: color 0.12s;
     }
-    .toc-item:hover .toc-label { color: rgba(255,255,255,0.65); }
-    .toc-item.active .toc-label { color: var(--accent); }
+    .toc-item:hover .toc-label { color: rgba(255,255,255,0.85); }
+    .toc-item.active .toc-label { color: #fff; font-weight: 500; }
 
     /* ── STAGE ── */
     #stage {
@@ -309,9 +309,12 @@
     loadSlide(current - 1);
   }
 
-  /* 휠: 쿨다운 방식 */
+  /* 휠: 사이드바 위면 스크롤, 슬라이드 위면 페이지 이동 */
+  const aside   = document.querySelector('aside');
   let lastWheel = 0;
+
   window.addEventListener('wheel', e => {
+    if (aside.matches(':hover')) return; // 사이드바 위 → 기본 스크롤
     e.preventDefault();
     const now = Date.now();
     if (now - lastWheel < 440) return;
