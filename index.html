@@ -146,7 +146,7 @@
 <div class="root">
 
   <nav>
-    <div class="nav-logo">Cloud TA <strong>김도훈</strong></div>
+    <div class="nav-logo">김도훈의 <strong>포트폴리오</strong></div>
     <div class="nav-center" id="slideTitle">—</div>
     <div class="nav-counter"><em id="curNum">1</em>&thinsp;/&thinsp;33</div>
     <div class="progress-bar" id="progressBar"></div>
@@ -173,50 +173,57 @@
      item:    실제 슬라이드 (순서대로 33개)
   ──────────────────────────────────────────────────────── */
   const TOC = [
-    { type: 'chapter', label: '소개' },
-    { type: 'item',    label: '표지' },
-    { type: 'item',    label: '자기소개' },
-    { type: 'item',    label: '목차' },
+    { type: 'item', label: '표지' },
+    { type: 'item', label: '학력 및 자격증' },
+    { type: 'item', label: '경력' },
+    { type: 'item', label: '자기소개' },
 
-    { type: 'chapter', label: '경력 & 교육' },
-    { type: 'item',    label: '학력 사항' },
-    { type: 'item',    label: '경력 개요' },
-    { type: 'item',    label: '주요 프로젝트 1' },
-    { type: 'item',    label: '주요 프로젝트 2' },
-    { type: 'item',    label: '주요 프로젝트 3' },
+    { type: 'chapter', label: 'Projects' },
+    { type: 'item', label: 'Main Projects' },
 
-    { type: 'chapter', label: '기술 스택' },
-    { type: 'item',    label: 'Cloud 인프라' },
-    { type: 'item',    label: 'DevOps / CI·CD' },
-    { type: 'item',    label: 'IaC & 자동화' },
-    { type: 'item',    label: '모니터링 & 운영' },
+    { type: 'chapter', label: 'Project 1' },
+    { type: 'item', label: 'AI 기초학력진단 시스템 1차 구축' },
+    { type: 'item', label: 'Multi-Cloud 전체 구성도' },
+    { type: 'item', label: '국가기초학력지원포털 서비스 구성도' },
+    { type: 'item', label: '학업성취도지원포털 서비스 구성도' },
+    { type: 'item', label: '역할 및 기여도' },
+    { type: 'item', label: '프로젝트 상세 내용' },
 
-    { type: 'chapter', label: '프로젝트 상세' },
-    { type: 'item',    label: '프로젝트 A — 개요' },
-    { type: 'item',    label: '프로젝트 A — 아키텍처' },
-    { type: 'item',    label: '프로젝트 A — 성과' },
-    { type: 'item',    label: '프로젝트 B — 개요' },
-    { type: 'item',    label: '프로젝트 B — 아키텍처' },
-    { type: 'item',    label: '프로젝트 B — 성과' },
-    { type: 'item',    label: '프로젝트 C — 개요' },
-    { type: 'item',    label: '프로젝트 C — 아키텍처' },
-    { type: 'item',    label: '프로젝트 C — 성과' },
+    { type: 'chapter', label: 'Project 2' },
+    { type: 'item', label: '과기부 보안실증 및 전환 사업' },
+    { type: 'item', label: '보안실증 및 전환 전체 구성도' },
+    { type: 'item', label: '역할 및 기여도' },
+    { type: 'item', label: '프로젝트 상세내용' },
 
-    { type: 'chapter', label: '역량 & 인증' },
-    { type: 'item',    label: '자격증' },
-    { type: 'item',    label: '수상 / 활동' },
-    { type: 'item',    label: '협업 & 소통 스타일' },
+    { type: 'chapter', label: 'Project 3' },
+    { type: 'item', label: 'NIA 민간 클라우드 2차 전환' },
+    { type: 'item', label: '전체 구성도' },
+    { type: 'item', label: '역할 및 기여도' },
+    { type: 'item', label: '프로젝트 상세 내용' },
+
+    { type: 'chapter', label: 'Project 4' },
+    { type: 'item', label: 'AWS SMB Competency TFT' },
+    { type: 'item', label: '역할 및 기여도' },
+
+    { type: 'chapter', label: 'Project 5' },
+    { type: 'item', label: '소방안전원 클라우드 마이그레이션' },
+    { type: 'item', label: 'Hybrid Cloud 구성도' },
+    { type: 'item', label: '역할 및 기여도' },
+    { type: 'item', label: '프로젝트 상세 내용' },
+
+    { type: 'chapter', label: 'Project 6' },
+    { type: 'item', label: 'KAIST LMS 서비스 인프라 구축' },
+    { type: 'item', label: 'KAIST LMS 전체 구성도' },
+    { type: 'item', label: 'KAIST LMS 논리 구성도' },
+    { type: 'item', label: '역할 및 기여도' },
+
+    { type: 'chapter', label: 'Project 7' },
+    { type: 'item', label: '소방안전원 빅데이터플랫폼 구축' },
+    { type: 'item', label: '빅데이터플랫폼 전체 구성도' },
+    { type: 'item', label: '역할 및 기여도' },
 
     { type: 'chapter', label: '마무리' },
-    { type: 'item',    label: '비전 & 목표' },
-    { type: 'item',    label: '지원 동기' },
-    { type: 'item',    label: '강점 요약' },
-    { type: 'item',    label: 'Q & A' },
-    { type: 'item',    label: '슬라이드 30' },
-    { type: 'item',    label: '슬라이드 31' },
-    { type: 'item',    label: '슬라이드 32' },
-    { type: 'item',    label: '슬라이드 33' },
-    { type: 'item',    label: '감사합니다' },
+    { type: 'item', label: '감사합니다' },
   ];
 
   const slides     = TOC.filter(t => t.type === 'item');
