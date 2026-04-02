@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Project Details Narrative</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            display: flex;
+            background-color: #0f172a;
+            position: relative;
+        }
+        .sidebar {
+            width: 380px;
+            background-color: #1e293b;
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #334155;
+            position: relative;
+            z-index: 10;
+        }
+        .project-meta {
+            margin-bottom: 40px;
+        }
+        .tag {
+            display: inline-block;
+            padding: 4px 10px;
+            background-color: rgba(20, 184, 166, 0.15);
+            color: #2dd4bf;
+            border: 1px solid rgba(20, 184, 166, 0.3);
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+        .title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-size: 1rem;
+            color: #94a3b8;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+        .highlight-bar {
+            width: 60px;
+            height: 4px;
+            background-color: #14b8a6;
+            margin: 25px 0;
+            border-radius: 2px;
+        }
+        .key-points {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .key-point-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .icon-circle {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: #334155;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+        .key-point-item:hover .icon-circle {
+            background-color: #14b8a6;
+            color: #fff;
+            box-shadow: 0 0 15px rgba(20, 184, 166, 0.4);
+        }
+        .kp-text {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #cbd5e1;
+        }
+        .content-area {
+            flex: 1;
+            padding: 50px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: #0f172a;
+        }
+        .narrative-block {
+            margin-bottom: 25px;
+            position: relative;
+            padding-left: 24px;
+            border-left: 2px solid #334155;
+            transition: border-color 0.3s;
+        }
+        .narrative-block:hover {
+            border-left-color: #14b8a6;
+        }
+        .block-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #e2e8f0;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .block-title i {
+            color: #2dd4bf;
+            font-size: 0.9rem;
+        }
+        .block-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #cbd5e1;
+            text-align: justify;
+        }
+        .strong-text {
+            color: #2dd4bf;
+            font-weight: 700;
+        }
+        .quote-icon {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            font-size: 8rem;
+            color: rgba(255, 255, 255, 0.03);
+            font-family: serif;
+            z-index: 0;
+        }
+</style>
+</head>
+<body>
+<div class="slide-container">
+  <div class="sidebar">
+    <div class="project-meta">
+      <span class="tag">PROJECT DETAILS</span>
+      <h1 class="title">프로젝트<br>상세 내용</h1>
+      <p class="subtitle">KAIST LMS 학사 서비스 인프라<br>(NHN Cloud 설계 · 구축 · 이관)</p>
+      <div class="highlight-bar"></div>
+    </div>
+    <div class="key-points">
+      <div class="key-point-item">
+        <div class="icon-circle">
+          <i class="fa-solid fa-drafting-compass"></i>
+        </div>
+        <p class="kp-text">Architecture Design & Build</p>
+      </div>
+      <div class="key-point-item">
+        <div class="icon-circle">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+        </div>
+        <p class="kp-text">Homepage Migration to NHN Cloud</p>
+      </div>
+      <div class="key-point-item">
+        <div class="icon-circle">
+          <i class="fa-solid fa-rotate"></i>
+        </div>
+        <p class="kp-text">Redirect Issue (ServerAlias)</p>
+      </div>
+      <div class="key-point-item">
+        <div class="icon-circle">
+          <i class="fa-solid fa-database"></i>
+        </div>
+        <p class="kp-text">Redis Session / App-layer Fault</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-area">
+    <i class="fa-solid fa-quote-right quote-icon"></i>
+
+    <div class="narrative-block">
+      <h3 class="block-title">
+        <i class="fa-solid fa-drafting-compass"></i> 아키텍처 설계부터 구축 · 이관까지 전 과정 수행
+      </h3>
+      <p class="block-text">
+        NHN Cloud 기반으로 KAIST LMS 학사 서비스 인프라를 <span class="strong-text">아키텍처 설계부터 구축까지</span> 진행했습니다.
+        기존에 타 환경에서 운영 중이던 KAIST 홈페이지를 NHN Cloud로 이관하여,
+        LMS와 홈페이지 두 서비스를 <span class="strong-text">단일 클라우드 환경에서 통합 운영</span>하는 구조로 설계했습니다.
+      </p>
+    </div>
+
+    <div class="narrative-block">
+      <h3 class="block-title">
+        <i class="fa-solid fa-rotate"></i> LMS 접속 시 홈페이지 리다이렉트 이슈 해결
+      </h3>
+      <p class="block-text">
+        구축 완료 후 첫 번째 이슈는 LMS 서비스 접속 시 홈페이지로 리다이렉트되는 문제였습니다.
+        원인을 추적한 결과 <span class="strong-text">웹 서버 설정의 ServerAlias가 정확히 지정되지 않아</span> 발생한 것으로 확인했고,
+        설정 수정으로 즉시 해결했습니다.
+      </p>
+    </div>
+
+    <div class="narrative-block">
+      <h3 class="block-title">
+        <i class="fa-solid fa-database"></i> Redis 세션 공유 구간 패킷 이상 · WEB 서버 장애 분석
+      </h3>
+      <p class="block-text">
+        운영 중 학사 시스템에서 간헐적 부하와 함께 WEB 서버 전체가 정상 작동하지 않는 장애가 발생했습니다.
+        WEB 서버에서는 원인을 찾지 못해 전체 구성을 재검토한 결과,
+        <span class="strong-text">Redis 서버에서 세션 공유 중 패킷이 정상 처리되지 않고 ESTABLISHED 상태가 대량으로 누적</span>되고 있음을 확인했습니다.
+      </p>
+    </div>
+
+    <div class="narrative-block">
+      <h3 class="block-title">
+        <i class="fa-solid fa-code-merge"></i> 개발팀 협업을 통한 애플리케이션단 근본 원인 해소
+      </h3>
+      <p class="block-text">
+        근본 원인은 <span class="strong-text">개발 소스에서 데이터를 정상 처리하지 못하는 애플리케이션 문제</span>였습니다.
+        개발팀과 협업하여 기능 개선 후 장애를 완전히 해소했습니다.
+        증상만 보면 인프라 문제로 보이지만 실제 원인은 애플리케이션단에 있었던 사례로,
+        <span class="strong-text">인프라와 애플리케이션을 동시에 확인하여 장애를 해결한 경험</span>이었습니다.
+      </p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
