@@ -148,7 +148,7 @@
   <nav>
     <div class="nav-logo">김도훈의 <strong>포트폴리오</strong></div>
     <div class="nav-center" id="slideTitle">—</div>
-    <div class="nav-counter"><em id="curNum">1</em>&thinsp;/&thinsp;35</div>
+    <div class="nav-counter"><em id="curNum">1</em>&thinsp;/&thinsp;<em id="totalNum">—</em></div>
     <div class="progress-bar" id="progressBar"></div>
   </nav>
 
@@ -167,11 +167,6 @@
 </div>
 
 <script>
-  /* ────────────────────────────────────────────────────────
-     목차 데이터 — 실제 슬라이드 제목으로 교체해 주세요.
-     chapter: 섹션 구분 레이블 (슬라이드 아님)
-     item:    실제 슬라이드 (순서대로 33개)
-  ──────────────────────────────────────────────────────── */
   const TOC = [
     { type: 'item', label: '표지' },
     { type: 'item', label: '학력 및 자격증' },
@@ -223,6 +218,8 @@
     { type: 'item', label: '역할 및 기여도' },
 
     { type: 'chapter', label: '마무리' },
+    { type: 'item', label: '추가 슬라이드 34' },
+    { type: 'item', label: '추가 슬라이드 35' },
     { type: 'item', label: '감사합니다' },
   ];
 
@@ -232,6 +229,9 @@
   const tocList    = document.getElementById('tocList');
   const slideEls   = [];
   const tocItemEls = [];
+
+  /* 총 페이지 수 표시 */
+  document.getElementById('totalNum').textContent = TOTAL;
 
   /* TOC 렌더 */
   let si = 0;
@@ -340,10 +340,8 @@
     d > 0 ? goNext() : goPrev();
   }
 
-  // 오버레이(슬라이드 영역) 휠
   overlay.addEventListener('wheel', onSlideWheel, { passive: false });
 
-  // window 레벨은 사이드바 제외한 나머지 커버용
   window.addEventListener('wheel', e => {
     if (aside.matches(':hover')) return;
     onSlideWheel(e);
